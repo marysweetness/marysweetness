@@ -1,0 +1,147 @@
+:root{
+  --bg-dark:#4d0000;
+  --bg-mid:#7a0000;
+  --text:#ffffff;
+  --button-blue: linear-gradient(180deg,#3a5bff,#0b1fd6);
+  --button-border:#0714a8;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{
+  height:100%;
+}
+
+body{
+  margin:0;
+  background: radial-gradient(circle at top, #9b0000, var(--bg-dark));
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+}
+
+/* Layout */
+.center{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:26px;
+  padding:48px 24px;
+}
+
+/* 🌈 MK BUBBLE RAINBOW TITLE */
+.title{
+  position:relative;
+  display:inline-block;
+  width:100%;
+  text-align:center;
+
+  /* friendly round bubble fonts */
+  font-family: 'Fredoka One', 'Baloo 2', 'Poppins', system-ui, sans-serif;
+  font-weight:900;
+  font-size:clamp(4rem, 12vw, 9rem);
+  letter-spacing: -0.02em;
+  text-transform:uppercase;
+
+  /* smooth, vibrant rainbow gradient (more stops for smoother interpolation) */
+  background: linear-gradient(90deg,
+    #ff2d95 0%,
+    #ff6a00 15%,
+    #ffd600 30%,
+    #39ff8a 47%,
+    #35e8ff 60%,
+    #5a75ff 75%,
+    #c35bff 90%,
+    #ff2d95 100%
+  );
+  background-size: 120% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  /* soft bubbly depth (no white stroke) */
+  text-shadow:
+    0 6px 16px rgba(0,0,0,0.36),
+    0 18px 36px rgba(0,0,0,0.50);
+
+  white-space:nowrap;
+}
+
+/* removed white sticker outline to keep letters border-free */
+
+/* glossy highlight inside the letters */
+.title::after{
+  content: attr(data-text);
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity:0.95;
+}
+
+.subtitle{
+  margin-top:-10px;
+  font-size:14px;
+  letter-spacing:0.04em;
+  opacity:0.95;
+}
+
+/* Buttons row */
+.stack{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:26px;
+  margin-top:6px;
+}
+
+/* Big glossy buttons */
+.button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:min(420px, 72vw);
+  max-width:420px;
+  height:88px;
+
+  padding:0 26px;
+  border-radius:18px;
+
+  background: var(--button-blue);
+  border:3px solid var(--button-border);
+
+  color:#fff;
+  text-decoration:none;
+
+  /* Comic Sans button text */
+  font-family: "Comic Sans MS","Comic Sans",cursive;
+  font-size:34px;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 10px 18px rgba(255,255,255,0.28),
+    inset 0 -12px 18px rgba(0,0,0,0.30),
+    0 18px 28px rgba(0,0,0,0.55);
+}
+
+.button:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 10px 18px rgba(255,255,255,0.32),
+    inset 0 -12px 18px rgba(0,0,0,0.30),
+    0 22px 34px rgba(0,0,0,0.60);
+}
+
+.button:active{
+  transform: translateY(1px);
+}
