@@ -8,15 +8,29 @@
   </head>
   <body>
     <main class="center">
-      <div class="title" data-text="My Photos">My Photos</div>
-      <div class="subtitle">a selection of photos I took</div>
+      <div style="max-width:900px; padding:24px; display:flex; flex-direction:column; min-height:calc(100vh - 48px);">
+        <p>Choose a collection:</p>
 
-      <nav class="stack">
-        <a class="button" href="/photos/">← back to photos</a>
-      </nav>
+        <div class="folder-grid">
+          <a class="folder" href="/photos/mine/family/">
+            <div class="folder-box" aria-hidden></div>
+            <div class="folder-label">Family</div>
+          </a>
 
-      <div style="max-width:900px; padding:24px;">
-        <p>Placeholder gallery — add images to this folder.</p>
+          <a class="folder" href="/photos/mine/friends/">
+            <div class="folder-box" aria-hidden></div>
+            <div class="folder-label">Friends</div>
+          </a>
+
+          <a class="folder" href="/photos/mine/strangers/">
+            <div class="folder-box" aria-hidden></div>
+            <div class="folder-label">Strangers</div>
+          </a>
+        </div>
+
+        <nav class="stack" style="margin-top:auto; margin-bottom:18px;">
+          <a class="button" href="/photos/">← back to photos</a>
+        </nav>
       </div>
     </main>
   </body>
