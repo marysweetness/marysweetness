@@ -11,23 +11,17 @@
 
   <body>
     <main class="center">
-      <div class="title">photos</div>
-      <div class="subtitle">photos i've taken sometime in the last 27 years</div>
-      <nav class="stack" style="margin-top:18px;">
-        <a class="button button--green" href="/photos/mine/">
-          -> photos i've taken
-        </a>
-        <a class="button button--green" href="/photos/theirs/">
-          -> photos someone else took
-        </a>
-      </nav>
-      <div style="max-width: 800px; padding: 24px; line-height: 1.6;">
+      <div style="max-width: 900px; padding: 24px; display:flex; flex-direction:column; min-height:calc(100vh - 48px);">
+        <div class="title">photo library</div>
 
-        <p>
-          <a class="button button--red" href="/">
-            ← back home
-          </a>
-        </p>
+        <nav class="stack" style="margin-top:18px;">
+          <a class="button button--green" href="/photos/mine/">-> photos i've taken</a>
+          <a class="button button--green" href="/photos/theirs/">-> photos someone else took</a>
+        </nav>
+
+        <nav class="stack" style="margin-top:auto; margin-bottom:18px;">
+          <a class="button button--red" href="/">← back home</a>
+        </nav>
       </div>
     </main>
   </body>
