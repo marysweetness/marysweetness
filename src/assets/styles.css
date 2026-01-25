@@ -104,28 +104,42 @@ body{
   margin-top:6px;
 }
 
-/* Big glossy buttons */
-.button{
-  display:flex;
+/* Ensure buttons inside stacks are uniform size */
+.stack .button{
+  width: min(320px, 62vw);
+  max-width:320px;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
+}
+
+/* Responsive buttons that allow multi-line text to fit */
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:normal;           /* allow wrapping */
+  word-break:break-word;
 
   width:min(420px, 72vw);
   max-width:420px;
-  height:88px;
+  min-height:56px;
+  height:auto;                 /* let height grow for wrapped text */
 
-  padding:0 26px;
-  border-radius:18px;
+  padding:10px 18px;
+  border-radius:14px;
 
   background: var(--button-blue);
-  border:3px solid var(--button-border);
+  border:2px solid var(--button-border);
 
   color:#fff;
   text-decoration:none;
 
-  /* Comic Sans button text */
+  /* Make font responsive so long labels shrink slightly */
   font-family: "Comic Sans MS","Comic Sans",cursive;
-  font-size:34px;
+  font-size: clamp(16px, 2.5vw, 28px);
+  line-height:1.05;
   font-weight:700;
 
   box-shadow:

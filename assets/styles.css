@@ -104,17 +104,30 @@ body{
   margin-top:6px;
 }
 
-/* Compact glossy buttons */
+/* Ensure buttons inside stacks are uniform size */
+.stack .button{
+  width: min(320px, 62vw);
+  max-width:320px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Compact glossy buttons that allow wrapped text */
 .button{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  text-align:center;
+  white-space:normal; /* allow wrapping */
+  word-break:break-word;
 
   width:min(320px, 62vw);
   max-width:320px;
-  height:60px;
+  min-height:48px;
+  height:auto; /* grow when text wraps */
 
-  padding:0 18px;
+  padding:10px 14px;
   border-radius:12px;
 
   background: var(--button-blue);
@@ -123,9 +136,9 @@ body{
   color:#fff;
   text-decoration:none;
 
-  /* Friendlier smaller button text */
   font-family: "Comic Sans MS","Comic Sans",cursive;
-  font-size:20px;
+  font-size: clamp(14px, 2.2vw, 20px);
+  line-height:1.05;
   font-weight:700;
 
   box-shadow:
