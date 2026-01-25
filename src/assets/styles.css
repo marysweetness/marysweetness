@@ -113,6 +113,26 @@ body{
   justify-content:center;
 }
 
+/* Green variant for photo category buttons */
+.button--green{
+  background: linear-gradient(180deg, #4ee07a, #15a64a);
+  border-color: #0f8b3a;
+}
+.button--green:hover{
+  background: linear-gradient(180deg, #3bd368, #0f8b3a);
+  transform: translateY(-1px);
+}
+
+/* Red variant for back/home buttons */
+.button--red{
+  background: linear-gradient(180deg, #ff6b6b, #c93030);
+  border-color: #9e2b2b;
+}
+.button--red:hover{
+  background: linear-gradient(180deg, #ff5757, #9e2b2b);
+  transform: translateY(-1px);
+}
+
 /* Responsive buttons that allow multi-line text to fit */
 .button{
   display:inline-flex;
