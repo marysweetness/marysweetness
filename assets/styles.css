@@ -145,3 +145,70 @@ body{
 .button:active{
   transform: translateY(1px);
 }
+/* =========================
+   MOBILE LAYOUT FIXES (SMALLER TITLE)
+   ========================= */
+@media (max-width: 768px) {
+
+  .title {
+    font-size: 1.4rem;        /* MUCH smaller */
+    letter-spacing: 0.12em;
+    transform: skew(-6deg);  /* still playful but calmer */
+    padding: 0 10px;
+    line-height: 1.1;
+    white-space: normal;     /* allow wrapping if needed */
+    text-align: center;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .stack {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 14px;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+
+}
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 600px) {
+  /* Make sure nothing “spills” off-screen */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* MK title: smaller + fits on screen */
+  .title {
+    font-size: clamp(1.6rem, 10vw, 3rem) !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important; /* keep on one line */
+    transform: skew(-12deg) !important;
+  }
+
+  /* If your title uses a sticker-outline via ::before, keep it aligned */
+  .title::before {
+    transform: translate(6px, 6px) skew(-12deg) !important;
+  }
+
+  /* Buttons: FORCE them to NOT be cursive on mobile */
+  .button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+  }
+
+  /* Optional: keep buttons comfortably sized on mobile */
+  .button {
+    width: min(92vw, 520px);
+  }
+}
