@@ -163,8 +163,11 @@ body{
   width:140px;
   height:96px;
   border-radius:8px;
-  background: linear-gradient(180deg,#5fb0ff,#2b89ff);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.35), inset 0 6px 10px rgba(255,255,255,0.06);
+  background: linear-gradient(180deg,#6cc0ff 0%, #3b8cff 45%, #1f6fe6 100%);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.45),
+    inset 0 6px 18px rgba(255,255,255,0.08),
+    inset 0 -8px 18px rgba(0,0,0,0.12);
 }
 
 .folder .folder-box::before{
@@ -179,6 +182,28 @@ body{
   border-top-right-radius:6px;
   background: linear-gradient(180deg,#74c3ff,#3b96ff);
   box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* glossy highlight and inner rim to mimic mac folder depth */
+.folder .folder-box::after{
+  content: '';
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:8px;
+  height:36px;
+  border-radius:6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.18));
+  mix-blend-mode: overlay;
+  pointer-events:none;
+}
+
+.folder .folder-inner-rim{
+  position:absolute;
+  inset:6px;
+  border-radius:6px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -6px 12px rgba(0,0,0,0.12);
+  pointer-events:none;
 }
 
 .folder .folder-label{
