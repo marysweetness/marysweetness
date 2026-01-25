@@ -12,43 +12,43 @@
         <section class="video-gallery" aria-label="Vertical video gallery">
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/4PwDFddpo4c?rel=0" title="video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-1" loading="lazy" src="https://www.youtube.com/embed/4PwDFddpo4c?rel=0&enablejsapi=1" title="video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/BFo8xW1JlBE?rel=0" title="video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-2" loading="lazy" src="https://www.youtube.com/embed/BFo8xW1JlBE?rel=0&enablejsapi=1" title="video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/oJiDpcsfRHU?rel=0" title="video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-3" loading="lazy" src="https://www.youtube.com/embed/oJiDpcsfRHU?rel=0&enablejsapi=1" title="video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/Y7EGQzn8e1k?rel=0" title="video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-4" loading="lazy" src="https://www.youtube.com/embed/Y7EGQzn8e1k?rel=0&enablejsapi=1" title="video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/_NZTkFUNq5k?rel=0" title="video 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-5" loading="lazy" src="https://www.youtube.com/embed/_NZTkFUNq5k?rel=0&enablejsapi=1" title="video 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/GVBtjaHxR7Y?rel=0" title="video 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-6" loading="lazy" src="https://www.youtube.com/embed/GVBtjaHxR7Y?rel=0&enablejsapi=1" title="video 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/K_5Lgf5GjIQ?rel=0" title="video 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-7" loading="lazy" src="https://www.youtube.com/embed/K_5Lgf5GjIQ?rel=0&enablejsapi=1" title="video 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/Xv7eeMikM_w?rel=0" title="video 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-8" loading="lazy" src="https://www.youtube.com/embed/Xv7eeMikM_w?rel=0&enablejsapi=1" title="video 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/AHRM_QNvp9E?rel=0" title="video 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-9" loading="lazy" src="https://www.youtube.com/embed/AHRM_QNvp9E?rel=0&enablejsapi=1" title="video 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
           <div class="video-item">
-            <iframe loading="lazy" src="https://www.youtube.com/embed/2b2BaMnlCA0?rel=0" title="video 10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vid-10" loading="lazy" src="https://www.youtube.com/embed/2b2BaMnlCA0?rel=0&enablejsapi=1" title="video 10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
 
         </section>
@@ -58,5 +58,56 @@
         </nav>
       </div>
     </main>
+    <script>
+      // Load YouTube IFrame API
+      (function(){
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      })();
+
+      var players = {};
+      var playerOrder = ['vid-1','vid-2','vid-3','vid-4','vid-5','vid-6','vid-7','vid-8','vid-9','vid-10'];
+      function onYouTubeIframeAPIReady(){
+        playerOrder.forEach(function(id){
+          var el = document.getElementById(id);
+          if(!el) return;
+          players[id] = new YT.Player(id, { events: { onStateChange: onPlayerStateChange } });
+        });
+        initObserver();
+      }
+
+      var currentPlaying = null;
+      function onPlayerStateChange(event){
+        // placeholder if we want to react to manual play
+      }
+
+      function initObserver(){
+        var options = { threshold: [0.55] };
+        var observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            var id = e.target.querySelector('iframe') && e.target.querySelector('iframe').id;
+            if(!id) return;
+            var player = players[id];
+            if(!player || typeof player.playVideo !== 'function') return;
+            if(e.intersectionRatio >= 0.55){
+              // play this one, pause others
+              if(currentPlaying && currentPlaying !== id){
+                var prev = players[currentPlaying];
+                try{ prev.pauseVideo(); }catch(err){}
+              }
+              try{ player.mute(); player.playVideo(); }catch(err){}
+              currentPlaying = id;
+            } else {
+              try{ player.pauseVideo(); }catch(err){}
+              if(currentPlaying === id) currentPlaying = null;
+            }
+          });
+        }, options);
+
+        document.querySelectorAll('.video-item').forEach(function(item){ observer.observe(item); });
+      }
+    </script>
   </body>
 </html>
