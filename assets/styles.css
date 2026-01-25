@@ -139,6 +139,61 @@ body{
   transform: translateY(-1px);
 }
 
+/* Photos folder grid */
+.folder-grid{
+  display:flex;
+  gap:28px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.folder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+  color:var(--text);
+  width:140px;
+}
+
+/* Mac-like blue folder */
+.folder .folder-box{
+  position:relative;
+  width:140px;
+  height:96px;
+  border-radius:8px;
+  background: linear-gradient(180deg,#5fb0ff,#2b89ff);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35), inset 0 6px 10px rgba(255,255,255,0.06);
+}
+
+.folder .folder-box::before{
+  /* the tab */
+  content: '';
+  position:absolute;
+  left:12px;
+  top:-12px;
+  width:64px;
+  height:28px;
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
+  background: linear-gradient(180deg,#74c3ff,#3b96ff);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+.folder .folder-label{
+  margin-top:10px;
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  color: #f8fbff;
+}
+
+.folder:hover .folder-box{
+  transform: translateY(-6px);
+  transition: transform 180ms ease;
+}
+
 /* Compact glossy buttons that allow wrapped text */
 .button{
   display:inline-flex;
