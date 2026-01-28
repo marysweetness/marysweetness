@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Work — Mary Sweetness</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand"><a href="/">Mary Sweetness</a></div>
+        <nav class="navlinks">
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+          <a href="/work/">Work</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Work</h1>
+      <p class="lede">A few projects or roles you want to highlight.</p>
+
+      <div class="card">
+        <strong>Project / Role Title</strong>
+        <p style="margin: 8px 0 0; color: var(--muted);">
+          1–2 sentences on what it was, what you did, and the impact.
+        </p>
+      </div>
+
+      <div class="card">
+        <strong>Another Project</strong>
+        <p style="margin: 8px 0 0; color: var(--muted);">
+          Add links, outcomes, or a short description.
+        </p>
+      </div>
+
+      <footer>© <span id="year"></span> Mary Sweetness</footer>
+    </main>
+
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <nav style="position:fixed; left:0; right:0; bottom:18px; display:flex; justify-content:center; pointer-events:none; z-index:9999;">
+      <a class="button button--red" href="/" style="pointer-events:auto;">← back home</a>
+    </nav>
+  </body>
+</html>
