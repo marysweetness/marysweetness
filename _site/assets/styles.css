@@ -40,7 +40,8 @@ body{
   /* friendly round bubble fonts */
   font-family: 'Fredoka One', 'Baloo 2', 'Poppins', system-ui, sans-serif;
   font-weight:900;
-  font-size:clamp(4rem, 12vw, 9rem);
+  /* smaller default title for non-home pages */
+  font-size: clamp(2rem, 5.5vw, 4rem);
   letter-spacing: -0.02em;
   text-transform:uppercase;
 
@@ -67,6 +68,11 @@ body{
     0 18px 36px rgba(0,0,0,0.50);
 
   white-space:nowrap;
+}
+
+/* Keep original large title only on homepage */
+.home .title{
+  font-size: clamp(4rem, 12vw, 9rem);
 }
 
 /* removed white sticker outline to keep letters border-free */
@@ -133,6 +139,86 @@ body{
   transform: translateY(-1px);
 }
 
+/* Photos folder grid */
+.folder-grid{
+  display:flex;
+  gap:28px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.folder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+  color:var(--text);
+  width:140px;
+}
+
+/* Mac-like blue folder */
+.folder .folder-box{
+  position:relative;
+  width:140px;
+  height:96px;
+  border-radius:8px;
+  background: linear-gradient(180deg,#6cc0ff 0%, #3b8cff 45%, #1f6fe6 100%);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.45),
+    inset 0 6px 18px rgba(255,255,255,0.08),
+    inset 0 -8px 18px rgba(0,0,0,0.12);
+}
+
+.folder .folder-box::before{
+  /* the tab */
+  content: '';
+  position:absolute;
+  left:12px;
+  top:-12px;
+  width:64px;
+  height:28px;
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
+  background: linear-gradient(180deg,#74c3ff,#3b96ff);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+/* glossy highlight and inner rim to mimic mac folder depth */
+.folder .folder-box::after{
+  content: '';
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:8px;
+  height:36px;
+  border-radius:6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.18));
+  mix-blend-mode: overlay;
+  pointer-events:none;
+}
+
+.folder .folder-inner-rim{
+  position:absolute;
+  inset:6px;
+  border-radius:6px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -6px 12px rgba(0,0,0,0.12);
+  pointer-events:none;
+}
+
+.folder .folder-label{
+  margin-top:10px;
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  color: #f8fbff;
+}
+
+.folder:hover .folder-box{
+  transform: translateY(-6px);
+  transition: transform 180ms ease;
+}
+
 /* Responsive buttons that allow multi-line text to fit */
 .button{
   display:inline-flex;
@@ -178,4 +264,47 @@ body{
 
 .button:active{
   transform: translateY(1px);
+}
+
+/* Video gallery (vertical scroll) */
+.video-gallery{
+  display:flex;
+  flex-direction:column;
+  gap:48px; /* more space between videos */
+  width:100%;
+  max-width:1100px;
+  padding:18px 24px;
+}
+.video-item{
+  width:100%;
+  max-width:min(880px, 90vw); /* much larger frame, responsive */
+  margin:0 auto;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow: 0 22px 40px rgba(0,0,0,0.55);
+  background: transparent; /* let site red show behind rounded corners */
+  padding:6px; /* small inset so iframe doesn't touch edges */
+}
+.video-item{
+  position:relative;
+  padding-top:56.25%; /* 16:9 aspect ratio container */
+}
+.video-item iframe,
+.video-item video{
+  position:absolute;
+  top:6px; /* match container padding */
+  left:6px;
+  right:6px;
+  bottom:6px;
+  width:calc(100% - 12px);
+  height:calc(100% - 12px);
+  display:block;
+  border-radius:8px;
+  background:transparent;
+}
+.video-caption{
+  padding:10px 14px;
+  font-size:14px;
+  color:var(--text);
+  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));
 }
