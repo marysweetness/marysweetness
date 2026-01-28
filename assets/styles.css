@@ -1,0 +1,352 @@
+:root{
+  --bg-dark:#4d0000;
+  --bg-mid:#7a0000;
+  --text:#ffffff;
+  --button-blue: linear-gradient(180deg,#3a5bff,#0b1fd6);
+  --button-border:#0714a8;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  background: radial-gradient(circle at top, #9b0000, var(--bg-dark));
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+}
+
+/* Layout */
+.center{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* ===== Title (you had orphaned title code; this is the missing selector) ===== */
+.title{
+  position: relative;
+  display: inline-block;
+
+  /* Your “rainbow block letters” gradient (edit if you want different colors) */
+  background: linear-gradient(
+    90deg,
+    #ff4d4d,
+    #ffb84d,
+    #fff24d,
+    #4dff88,
+    #4dd2ff,
+    #8b6bff,
+    #ff4dd8
+  );
+  background-size: 120% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  /* soft bubbly depth (no white stroke) */
+  text-shadow:
+    0 6px 16px rgba(0,0,0,0.36),
+    0 18px 36px rgba(0,0,0,0.50);
+
+  white-space: nowrap;
+}
+
+/* Keep original large title only on homepage */
+.home .title{
+  font-size: clamp(4rem, 12vw, 9rem);
+}
+
+/* glossy highlight inside the letters */
+.title::after{
+  content: attr(data-text);
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.25) 30%,
+    rgba(255,255,255,0) 60%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity:0.95;
+}
+
+.subtitle{
+  margin-top:-10px;
+  font-size:14px;
+  letter-spacing:0.04em;
+  opacity:0.95;
+}
+
+/* Video gallery */
+.video-gallery{
+  display:flex;
+  flex-direction:column;
+  gap:48px; /* more space between videos */
+  width:100%;
+  max-width:1100px;
+  padding:18px 24px;
+}
+
+.video-item{
+  width:100%;
+  max-width:min(880px, 90vw); /* much larger frame, responsive */
+  margin:0 auto;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow: 0 22px 40px rgba(0,0,0,0.55);
+  background: transparent; /* let site red show behind rounded corners */
+  position:relative;
+  padding-top:56.25%; /* 16:9 */
+}
+
+.video-item iframe,
+.video-item video{
+  position:absolute;
+  top:6px;
+  left:6px;
+  right:6px;
+  bottom:6px;
+  width:calc(100% - 12px);
+  height:calc(100% - 12px);
+  display:block;
+  border-radius:8px;
+  background:transparent;
+}
+
+.video-caption{
+  padding:10px 14px;
+  font-size:14px;
+  color:var(--text);
+  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));
+}
+
+/* Buttons row */
+.stack{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:26px;
+  margin-top:6px;
+}
+
+/* Ensure buttons inside stacks are uniform size */
+.stack .button{
+  width: min(320px, 62vw);
+  max-width:320px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Green variant for photo category buttons */
+.button--green{
+  background: linear-gradient(180deg, #4ee07a, #15a64a);
+  border-color: #0f8b3a;
+}
+.button--green:hover{
+  background: linear-gradient(180deg, #3bd368, #0f8b3a);
+  transform: translateY(-1px);
+}
+
+/* Red variant for back/home buttons */
+.button--red{
+  background: linear-gradient(180deg, #ff6b6b, #c93030);
+  border-color: #9e2b2b;
+}
+.button--red:hover{
+  background: linear-gradient(180deg, #ff5757, #9e2b2b);
+  transform: translateY(-1px);
+}
+
+/* Photos folder grid */
+.folder-grid{
+  display:flex;
+  gap:28px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.folder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+  color:var(--text);
+  width:140px;
+}
+
+/* Mac-like blue folder */
+.folder .folder-box{
+  position:relative;
+  width:140px;
+  height:96px;
+  border-radius:8px;
+  background: linear-gradient(180deg,#6cc0ff 0%, #3b8cff 45%, #1f6fe6 100%);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.45),
+    inset 0 6px 18px rgba(255,255,255,0.08),
+    inset 0 -8px 18px rgba(0,0,0,0.12);
+}
+
+.folder .folder-box::before{
+  content:'';
+  position:absolute;
+  left:12px;
+  top:-12px;
+  width:64px;
+  height:28px;
+  border-top-left-radius:6px;
+  border-top-right-radius:6px;
+  background: linear-gradient(180deg,#74c3ff,#3b96ff);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+}
+
+.folder .folder-box::after{
+  content:'';
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:8px;
+  height:36px;
+  border-radius:6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.18));
+  mix-blend-mode: overlay;
+  pointer-events:none;
+}
+
+.folder .folder-inner-rim{
+  position:absolute;
+  inset:6px;
+  border-radius:6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -6px 12px rgba(0,0,0,0.12);
+  pointer-events:none;
+}
+
+.folder .folder-label{
+  margin-top:10px;
+  font-weight:700;
+  font-size:14px;
+  text-align:center;
+  color:#f8fbff;
+}
+
+.folder:hover .folder-box{
+  transform: translateY(-6px);
+  transition: transform 180ms ease;
+}
+
+/* Compact glossy buttons that allow wrapped text */
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:normal;
+  word-break:break-word;
+
+  width:min(320px, 62vw);
+  max-width:320px;
+  min-height:48px;
+  height:auto;
+
+  padding:10px 14px;
+  border-radius:12px;
+
+  background: var(--button-blue);
+  border:2px solid var(--button-border);
+
+  color:#fff;
+  text-decoration:none;
+
+  font-family: "Comic Sans MS","Comic Sans",cursive;
+  font-size: clamp(14px, 2.2vw, 20px);
+  line-height:1.05;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 8px 12px rgba(255,255,255,0.24),
+    inset 0 -8px 12px rgba(0,0,0,0.22),
+    0 10px 18px rgba(0,0,0,0.45);
+}
+
+.button:hover{
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 8px 12px rgba(255,255,255,0.28),
+    inset 0 -8px 12px rgba(0,0,0,0.22),
+    0 14px 22px rgba(0,0,0,0.50);
+}
+
+.button:active{ transform: translateY(1px); }
+
+/* =========================
+   MOBILE LAYOUT FIXES (SMALLER TITLE)
+   ========================= */
+@media (max-width: 768px){
+  .title{
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    transform: skew(-6deg);
+    padding: 0 10px;
+    line-height: 1.1;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .subtitle{
+    font-size: 0.8rem;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .stack{
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 14px;
+  }
+
+  .button{
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
+}
+
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 600px){
+  body{ overflow-x:hidden; }
+
+  .title{
+    font-size: clamp(1.6rem, 10vw, 3rem) !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+    transform: skew(-12deg) !important;
+  }
+
+  .title::before{
+    transform: translate(6px, 6px) skew(-12deg) !important;
+  }
+
+  .button{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    width: min(92vw, 520px);
+  }
+}
