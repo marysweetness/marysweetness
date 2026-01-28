@@ -135,7 +135,7 @@ body{
   display:flex;
   flex-direction:row;
   justify-content:center;
-  align-items:center;
+  align-items:stretch; /* allow children to match height */
   flex-wrap:wrap;
   gap:26px;
   margin-top:6px;
@@ -148,6 +148,10 @@ body{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  /* enforce equal-sized buttons in the row */
+  height:72px;
+  min-height:72px;
+  padding:12px 16px;
 }
 
 /* Green variant for photo category buttons */
