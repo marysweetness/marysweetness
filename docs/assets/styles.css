@@ -8,9 +8,7 @@
 
 *{ box-sizing:border-box; }
 
-html,body{
-  height:100%;
-}
+html,body{ height:100%; }
 
 body{
   margin:0;
@@ -25,36 +23,23 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:26px;
-  padding:48px 24px;
 }
 
-/* 🌈 MK BUBBLE RAINBOW TITLE */
+/* ===== Title (you had orphaned title code; this is the missing selector) ===== */
 .title{
-  position:relative;
-  display:inline-block;
-  width:100%;
-  text-align:center;
+  position: relative;
+  display: inline-block;
 
-  /* friendly round bubble fonts */
-  font-family: 'Fredoka One', 'Baloo 2', 'Poppins', system-ui, sans-serif;
-  font-weight:900;
-  /* smaller default title for non-home pages */
-  font-size: clamp(2rem, 5.5vw, 4rem);
-  letter-spacing: -0.02em;
-  text-transform:uppercase;
-
-  /* smooth, vibrant rainbow gradient (more stops for smoother interpolation) */
-  background: linear-gradient(90deg,
-    #ff2d95 0%,
-    #ff6a00 15%,
-    #ffd600 30%,
-    #39ff8a 47%,
-    #35e8ff 60%,
-    #5a75ff 75%,
-    #c35bff 90%,
-    #ff2d95 100%
+  /* Your “rainbow block letters” gradient (edit if you want different colors) */
+  background: linear-gradient(
+    90deg,
+    #ff4d4d,
+    #ffb84d,
+    #fff24d,
+    #4dff88,
+    #4dd2ff,
+    #8b6bff,
+    #ff4dd8
   );
   background-size: 120% 100%;
   -webkit-background-clip: text;
@@ -67,7 +52,7 @@ body{
     0 6px 16px rgba(0,0,0,0.36),
     0 18px 36px rgba(0,0,0,0.50);
 
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
 /* Keep original large title only on homepage */
@@ -75,15 +60,18 @@ body{
   font-size: clamp(4rem, 12vw, 9rem);
 }
 
-/* removed white sticker outline to keep letters border-free */
-
 /* glossy highlight inside the letters */
 .title::after{
   content: attr(data-text);
   position:absolute;
   inset:0;
   z-index:1;
-  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.25) 30%, rgba(255,255,255,0) 60%);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.85) 0%,
+    rgba(255,255,255,0.25) 30%,
+    rgba(255,255,255,0) 60%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -99,12 +87,55 @@ body{
   opacity:0.95;
 }
 
+/* Video gallery */
+.video-gallery{
+  display:flex;
+  flex-direction:column;
+  gap:48px; /* more space between videos */
+  width:100%;
+  max-width:1100px;
+  padding:18px 24px;
+}
+
+.video-item{
+  width:100%;
+  max-width:min(880px, 90vw); /* much larger frame, responsive */
+  margin:0 auto;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow: 0 22px 40px rgba(0,0,0,0.55);
+  background: transparent; /* let site red show behind rounded corners */
+  position:relative;
+  padding-top:56.25%; /* 16:9 */
+}
+
+.video-item iframe,
+.video-item video{
+  position:absolute;
+  top:6px;
+  left:6px;
+  right:6px;
+  bottom:6px;
+  width:calc(100% - 12px);
+  height:calc(100% - 12px);
+  display:block;
+  border-radius:8px;
+  background:transparent;
+}
+
+.video-caption{
+  padding:10px 14px;
+  font-size:14px;
+  color:var(--text);
+  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));
+}
+
 /* Buttons row */
 .stack{
   display:flex;
   flex-direction:row;
   justify-content:center;
-  align-items:center;
+  align-items:stretch; /* allow children to match height */
   flex-wrap:wrap;
   gap:26px;
   margin-top:6px;
@@ -117,6 +148,10 @@ body{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  /* enforce equal-sized buttons in the row */
+  height:72px;
+  min-height:72px;
+  padding:12px 16px;
 }
 
 /* Green variant for photo category buttons */
@@ -171,8 +206,7 @@ body{
 }
 
 .folder .folder-box::before{
-  /* the tab */
-  content: '';
+  content:'';
   position:absolute;
   left:12px;
   top:-12px;
@@ -184,9 +218,8 @@ body{
   box-shadow: 0 6px 10px rgba(0,0,0,0.2);
 }
 
-/* glossy highlight and inner rim to mimic mac folder depth */
 .folder .folder-box::after{
-  content: '';
+  content:'';
   position:absolute;
   left:8px;
   right:8px;
@@ -202,7 +235,9 @@ body{
   position:absolute;
   inset:6px;
   border-radius:6px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -6px 12px rgba(0,0,0,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -6px 12px rgba(0,0,0,0.12);
   pointer-events:none;
 }
 
@@ -211,7 +246,7 @@ body{
   font-weight:700;
   font-size:14px;
   text-align:center;
-  color: #f8fbff;
+  color:#f8fbff;
 }
 
 .folder:hover .folder-box{
@@ -219,22 +254,22 @@ body{
   transition: transform 180ms ease;
 }
 
-/* Responsive buttons that allow multi-line text to fit */
+/* Compact glossy buttons that allow wrapped text */
 .button{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  white-space:normal;           /* allow wrapping */
+  white-space:normal;
   word-break:break-word;
 
-  width:min(420px, 72vw);
-  max-width:420px;
-  min-height:56px;
-  height:auto;                 /* let height grow for wrapped text */
+  width:min(320px, 62vw);
+  max-width:320px;
+  min-height:48px;
+  height:auto;
 
-  padding:10px 18px;
-  border-radius:14px;
+  padding:10px 14px;
+  border-radius:12px;
 
   background: var(--button-blue);
   border:2px solid var(--button-border);
@@ -242,69 +277,80 @@ body{
   color:#fff;
   text-decoration:none;
 
-  /* Make font responsive so long labels shrink slightly */
   font-family: "Comic Sans MS","Comic Sans",cursive;
-  font-size: clamp(16px, 2.5vw, 28px);
+  font-size: clamp(14px, 2.2vw, 20px);
   line-height:1.05;
   font-weight:700;
 
   box-shadow:
-    inset 0 10px 18px rgba(255,255,255,0.28),
-    inset 0 -12px 18px rgba(0,0,0,0.30),
-    0 18px 28px rgba(0,0,0,0.55);
+    inset 0 8px 12px rgba(255,255,255,0.24),
+    inset 0 -8px 12px rgba(0,0,0,0.22),
+    0 10px 18px rgba(0,0,0,0.45);
 }
 
 .button:hover{
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow:
-    inset 0 10px 18px rgba(255,255,255,0.32),
-    inset 0 -12px 18px rgba(0,0,0,0.30),
-    0 22px 34px rgba(0,0,0,0.60);
+    inset 0 8px 12px rgba(255,255,255,0.28),
+    inset 0 -8px 12px rgba(0,0,0,0.22),
+    0 14px 22px rgba(0,0,0,0.50);
 }
 
-.button:active{
-  transform: translateY(1px);
+.button:active{ transform: translateY(1px); }
+
+/* =========================
+   MOBILE LAYOUT FIXES (SMALLER TITLE)
+   ========================= */
+@media (max-width: 768px){
+  .title{
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    transform: skew(-6deg);
+    padding: 0 10px;
+    line-height: 1.1;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .subtitle{
+    font-size: 0.8rem;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .stack{
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 0 14px;
+  }
+
+  .button{
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 12px 0;
+  }
 }
 
-/* Video gallery (vertical scroll) */
-.video-gallery{
-  display:flex;
-  flex-direction:column;
-  gap:48px; /* more space between videos */
-  width:100%;
-  max-width:1100px;
-  padding:18px 24px;
-}
-.video-item{
-  width:100%;
-  max-width:min(880px, 90vw); /* much larger frame, responsive */
-  margin:0 auto;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow: 0 22px 40px rgba(0,0,0,0.55);
-  background: transparent; /* let site red show behind rounded corners */
-  padding:6px; /* small inset so iframe doesn't touch edges */
-}
-.video-item{
-  position:relative;
-  padding-top:56.25%; /* 16:9 aspect ratio container */
-}
-.video-item iframe,
-.video-item video{
-  position:absolute;
-  top:6px; /* match container padding */
-  left:6px;
-  right:6px;
-  bottom:6px;
-  width:calc(100% - 12px);
-  height:calc(100% - 12px);
-  display:block;
-  border-radius:8px;
-  background:transparent;
-}
-.video-caption{
-  padding:10px 14px;
-  font-size:14px;
-  color:var(--text);
-  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.04));
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 600px){
+  body{ overflow-x:hidden; }
+
+  .title{
+    font-size: clamp(1.6rem, 10vw, 3rem) !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+    transform: skew(-12deg) !important;
+  }
+
+  .title::before{
+    transform: translate(6px, 6px) skew(-12deg) !important;
+  }
+
+  .button{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    width: min(92vw, 520px);
+  }
 }

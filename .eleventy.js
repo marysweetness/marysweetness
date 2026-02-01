@@ -1,11 +1,15 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-  eleventyConfig.addPassthroughCopy("assets/**/*.{jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}");
+  eleventyConfig.addPassthroughCopy("assets");
+  eleventyConfig.addPassthroughCopy("CNAME");
+  
+  eleventyConfig.ignores.add("_site/**");
+  eleventyConfig.ignores.add("docs/**");
+  eleventyConfig.ignores.add("node_modules/**");
 
   return {
     dir: {
       input: ".",
-      output: "_site"
+      output: "docs"
     }
   };
 };
