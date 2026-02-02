@@ -8,12 +8,12 @@
     <style>
       .photo-grid {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        column-gap: 40px;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 20px;
         row-gap: 20px;
         padding: 24px;
-        max-width: 1400px;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
       }
       .photo-grid img {
         width: 100%;
@@ -42,198 +42,218 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+      .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+        font-size: 48px;
+        padding: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        user-select: none;
+      }
+      .modal-nav:hover {
+        background: rgba(255,255,255,0.3);
+      }
+      .modal-prev {
+        left: 20px;
+      }
+      .modal-next {
+        right: 20px;
+      }
     </style>
   </head>
 
   <body>
     <main>
-      <div style="text-align: center; padding: 24px;">
-        <div class="title">35mm</div>
-      </div>
-
       <div class="photo-grid">
-        <img src="/assets/35mm to website/001045040012.heic" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/001045040013.heic" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/06B62485-658C-4537-B3EC-BC4EEFC32D80.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/0C7B9E35-2A80-4DD4-91D7-90DC4BCCA69C.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/1A5840F9-AACF-4C8F-96AC-188236060D87.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/226DA3C6-A355-4990-84D0-71051D71869C.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/AC2EB8DB-9AAE-45EA-9B7B-0DAC84E18840.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_1140.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_1158.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_1182.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_1195.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3491.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3494.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3495.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3496.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3497.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3498.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3500.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3505.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3508.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3513.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3522.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3526.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3528.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3534.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3538.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3556.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3557.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3558.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3560.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3563.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3568.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3570.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3571.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_3575.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5751.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5758.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5759.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5760.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5791.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5792.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_5797.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7255.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7264.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7265.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7268.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7275.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7332.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7342.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7343.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7346.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7351.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7359.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7362.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7367.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7372.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7373.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7374.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7377.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7378.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7380.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7381.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7390.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7395.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7416.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7418.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7428.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7430.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7439.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7443.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7448.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7452.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7461.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7473.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7477.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7485.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7490.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7491.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7492.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7497.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7501.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7506.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7508.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7509.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7512.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7513.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7516.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7518.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7519.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7521.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7526.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7527.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7529.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7530.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7536.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7541.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7542.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7543.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/IMG_7546.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7547.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7548.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7550.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7552.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7556.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7558.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7559.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7561.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7563.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7564.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7574.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7579.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7582.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7583.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7584.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7585.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7586.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7587.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7588.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7590.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7591.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7592.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7596.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7600.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7601.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7611.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7641.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_7643.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/IMG_9100.JPG" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa001(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa002(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa002(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa002(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa002.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa003(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa003(6).jpg" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa003.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa004(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa004.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa005(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa005(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa005.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa006(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa007(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa007(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa008(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa008(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa009.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa010.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa011.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa012(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa013(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa013(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa013(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa014(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa014(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa014.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa015(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa015(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3558.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7265.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa015.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa016(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa016.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa017.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa018(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa020(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa020(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5760.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7380.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa007(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3497.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7559.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/226DA3C6-A355-4990-84D0-71051D71869C.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7342.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa020.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa021(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa021.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa022(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa023(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa023.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa024.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa026(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa027.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3526.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7582.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa002(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_1182.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7491.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa028.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa029(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa030.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa032(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3563.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7373.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/001045040012.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7518.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa014(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5791.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7416.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa005.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3570.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7587.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/06B62485-658C-4537-B3EC-BC4EEFC32D80.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7264.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa032.jpg" alt="35mm photo" onclick="openModal(this.src)" />
-        <img src="/assets/35mm to website/barrettaa033(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3495.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7543.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa017.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_1195.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7506.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa009.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3538.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7367.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa023.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7255.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3513.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7592.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa013(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5758.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7448.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/1A5840F9-AACF-4C8F-96AC-188236060D87.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7351.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa004(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3568.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7529.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa030.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_1158.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7585.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa021(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3556.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7377.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/0C7B9E35-2A80-4DD4-91D7-90DC4BCCA69C.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7490.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa008(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3500.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7552.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa015(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5751.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7430.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa002(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7332.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3571.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7600.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa026(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_1140.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7512.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa011.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3528.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7381.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/AC2EB8DB-9AAE-45EA-9B7B-0DAC84E18840.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7268.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa035.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3494.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7564.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa006(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_9100.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7497.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa020(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3560.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7390.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/001045040013.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7521.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa014.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5792.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7443.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa003(6).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3508.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7590.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa022(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7275.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3491.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7550.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa016.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5759.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7508.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa010.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3534.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7374.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa024.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7346.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3522.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7596.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa013(3).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7418.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3575.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7461.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa002.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7359.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3496.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7536.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa029(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7583.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3505.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7586.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa020(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_5797.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7379.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa007(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3557.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7492.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa032(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7343.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3498.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7558.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa014(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7428.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7547.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa001(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7362.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7516.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa015(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7601.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_3496.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7527.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa027.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7485.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7372.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa004.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7530.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7643.JPG" alt="35mm photo" onclick="openModal(this.src)" />
         <img src="/assets/35mm to website/barrettaa036(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7395.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7501.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa012(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7574.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7541.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa023(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7452.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7563.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa005(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7611.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7519.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa018(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7591.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7439.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa013(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7542.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7556.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa002(4).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7477.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7509.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa021.jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7548.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7588.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa033(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7473.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7513.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa008(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7579.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7561.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa016(1).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7526.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7641.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa005(5).jpg" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7584.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/IMG_7378.JPG" alt="35mm photo" onclick="openModal(this.src)" />
+        <img src="/assets/35mm to website/barrettaa003(2).jpg" alt="35mm photo" onclick="openModal(this.src)" />
       </div>
 
       <div style="text-align: center; padding: 24px;">
@@ -244,11 +264,17 @@
     </main>
 
     <div id="modal" class="modal" onclick="closeModal()">
-      <img class="modal-content" id="modal-img">
+      <button class="modal-nav modal-prev" onclick="event.stopPropagation(); navigateImage(-1)">‹</button>
+      <img class="modal-content" id="modal-img" onclick="event.stopPropagation()">
+      <button class="modal-nav modal-next" onclick="event.stopPropagation(); navigateImage(1)">›</button>
     </div>
 
     <script>
+      let currentImageIndex = 0;
+      const images = Array.from(document.querySelectorAll('.photo-grid img'));
+      
       function openModal(src) {
+        currentImageIndex = images.findIndex(img => img.src === src);
         document.getElementById('modal').style.display = 'block';
         document.getElementById('modal-img').src = src;
       }
@@ -257,9 +283,23 @@
         document.getElementById('modal').style.display = 'none';
       }
 
+      function navigateImage(direction) {
+        currentImageIndex += direction;
+        if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+        if (currentImageIndex >= images.length) currentImageIndex = 0;
+        document.getElementById('modal-img').src = images[currentImageIndex].src;
+      }
+
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeModal();
+        const modal = document.getElementById('modal');
+        if (modal.style.display === 'block') {
+          if (e.key === 'Escape') {
+            closeModal();
+          } else if (e.key === 'ArrowLeft') {
+            navigateImage(-1);
+          } else if (e.key === 'ArrowRight') {
+            navigateImage(1);
+          }
         }
       });
     </script>
