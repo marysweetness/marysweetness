@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>biology</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+        padding: 24px;
+        width: 100%;
+        margin: 0;
+      }
+      .photo-grid img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        display: block;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        cursor: pointer;
+      }
+      .modal-content {
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        margin: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+        font-size: 48px;
+        padding: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        user-select: none;
+      }
+      .modal-nav:hover {
+        background: rgba(255,255,255,0.3);
+      }
+      .modal-prev {
+        left: 20px;
+      }
+      .modal-next {
+        right: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="photo-grid">
+        <img src="/assets/biology/1733303560090.jpeg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20250629_0007.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20250629_0009.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0007.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0008.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0009.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0010.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0011.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0012.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0013.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0014.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0015.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0016.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0017.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0018.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0019.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0020.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0021.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0022.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0023.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0024.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0025.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0026.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0027.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0028.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0029.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0030.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0031.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0032.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0033.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0034.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0035.jpg" alt="biology photo" onclick="openModal(this.src)" />
+        <img src="/assets/biology/IMG_20260201_0036.jpg" alt="biology photo" onclick="openModal(this.src)" />
+      </div>
+
+      <div style="text-align: center; padding: 24px;">
+        <nav class="stack" style="max-width: 300px; margin: 0 auto;">
+          <a class="button button--red" href="/good-to-know/">← back</a>
+        </nav>
+      </div>
+    </main>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+      <button class="modal-nav modal-prev" onclick="event.stopPropagation(); navigateImage(-1)">‹</button>
+      <img class="modal-content" id="modal-img" onclick="event.stopPropagation()">
+      <button class="modal-nav modal-next" onclick="event.stopPropagation(); navigateImage(1)">›</button>
+    </div>
+
+    <script>
+      let currentImageIndex = 0;
+      const images = Array.from(document.querySelectorAll('.photo-grid img'));
+      
+      function openModal(src) {
+        currentImageIndex = images.findIndex(img => img.src === src);
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('modal-img').src = src;
+      }
+
+      function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+      }
+
+      function navigateImage(direction) {
+        currentImageIndex += direction;
+        if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+        if (currentImageIndex >= images.length) currentImageIndex = 0;
+        document.getElementById('modal-img').src = images[currentImageIndex].src;
+      }
+
+      document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('modal');
+        if (modal.style.display === 'block') {
+          if (e.key === 'Escape') {
+            closeModal();
+          } else if (e.key === 'ArrowLeft') {
+            navigateImage(-1);
+          } else if (e.key === 'ArrowRight') {
+            navigateImage(1);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
