@@ -9,14 +9,19 @@
       .carousel-container {
         position: relative;
         max-width: 400px;
-        margin: 48px auto;
-        padding: 0 60px;
+        padding: 0 40px;
+        background: rgba(255,255,255,0.05);
+        padding: 24px;
+        border-radius: 8px;
+        border: 1px solid white;
+        width: fit-content;
       }
       .carousel-image {
         width: 100%;
         height: auto;
         display: none;
-        border-radius: 12px;
+        border-radius: 8px;
+        cursor: pointer;
       }
       .carousel-image.active {
         display: block;
@@ -28,10 +33,10 @@
         background: rgba(255, 255, 255, 0.9);
         color: #000;
         border: none;
-        width: 50px;
-        height: 50px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
-        font-size: 24px;
+        font-size: 20px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -43,16 +48,89 @@
         background: rgba(255, 255, 255, 1);
       }
       .carousel-arrow.left {
-        left: 0;
+        left: 5px;
       }
       .carousel-arrow.right {
-        right: 0;
+        right: 5px;
       }
       .carousel-counter {
         text-align: center;
-        margin-top: 16px;
+        margin-top: 12px;
         color: white;
-        font-size: 18px;
+        font-size: 14px;
+      }style="padding: 48px 24px; display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+        <div class="carousel-container">
+          <button class="carousel-arrow left" onclick="changeSlide(-1)">‹</button>
+          <img src="/assets/35mm to website/leben/B1.jpg" alt="Leben B1" class="carousel-image active" onclick="openModal()">
+          <img src="/assets/35mm to website/leben/b2.jpg" alt="Leben B2" class="carousel-image" onclick="openModal()">
+          <img src="/assets/35mm to website/leben/b3.jpg" alt="Leben B3" class="carousel-image" onclick="openModal()">
+          <img src="/assets/35mm to website/leben/b4.jpg" alt="Leben B4" class="carousel-image" onclick="openModal()">
+          <button class="carousel-arrow right" onclick="changeSlide(1)">›</button>
+          <div class="carousel-counter">
+            <span id="currentSlide">1</span> / 4
+          </div>
+        </div>
+
+      }
+      .modal-content-carousel {
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0 80px;
+      }
+      .modal-content-carousel img {
+        width: 100%;
+        height: auto;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 12px;
+        display: none;
+      }
+      .modal-content-carousel img.active {
+        display: block;
+      }
+      .modal-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        color: #000;
+        border: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        z-index: 1001;
+      }
+      .modal-arrow:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+      .modal-arrow.left {
+        left: 10px;
+      }
+      .modal-arrow.right {
+        right: 10px;
+      }
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1001;
       }
     </style>
   </head>
@@ -84,6 +162,18 @@
         </div>
       </div>
       
+      <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <div class="modal-content-carousel">
+          <button class="modal-arrow left" onclick="event.stopPropagation(); changeModalSlide(-1)">‹</button>
+          <img src="/assets/35mm to website/leben/B1.jpg" alt="Leben B1" class="modal-image">
+          <img src="/assets/35mm to website/leben/b2.jpg" alt="Leben B2" class="modal-image">
+          <img src="/assets/35mm to website/leben/b3.jpg" alt="Leben B3" class="modal-image">
+          <img src="/assets/35mm to website/leben/b4.jpg" alt="Leben B4" class="modal-image">
+          <button class="modal-arrow right" onclick="event.stopPropagation(); changeModalSlide(1)">›</button>
+        </div>
+      </div>
+
       <div style="text-align: center; padding: 24px;">
         <nav class="stack" style="max-width: 300px; margin: 0 auto;">
           <a class="button button--red" href="/good-to-know/">← back</a>
@@ -94,7 +184,9 @@
     <script>
       let currentSlideIndex = 0;
       const slides = document.querySelectorAll('.carousel-image');
+      const modalSlides = document.querySelectorAll('.modal-image');
       const counter = document.getElementById('currentSlide');
+      const modal = document.getElementById('myModal');
       
       function changeSlide(direction) {
         slides[currentSlideIndex].classList.remove('active');
@@ -103,9 +195,37 @@
         counter.textContent = currentSlideIndex + 1;
       }
       
+      function openModal() {
+        modal.classList.add('active');
+        modalSlides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === currentSlideIndex);
+        });
+      }
+      
+      function closeModal() {
+        modal.classList.remove('active');
+      }
+      
+      function changeModalSlide(direction) {
+        modalSlides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = (currentSlideIndex + direction + modalSlides.length) % modalSlides.length;
+        modalSlides[currentSlideIndex].classList.add('active');
+        slides[currentSlideIndex].classList.remove('active');
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === currentSlideIndex);
+        });
+        counter.textContent = currentSlideIndex + 1;
+      }
+      
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'ArrowRight') changeSlide(1);
+        if (!modal.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') changeSlide(-1);
+          if (e.key === 'ArrowRight') changeSlide(1);
+        } else {
+          if (e.key === 'ArrowLeft') changeModalSlide(-1);
+          if (e.key === 'ArrowRight') changeModalSlide(1);
+          if (e.key === 'Escape') closeModal();
+        }
       });
     </script>
   </body>
