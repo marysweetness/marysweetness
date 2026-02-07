@@ -5,14 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>hot guys</title>
     <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+        padding: 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .photo-grid img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .photo-grid img:hover {
+        transform: scale(1.02);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.95);
+      }
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <main class="container">
+      <div class="photo-grid">
+        <img src="/assets/35mm to website/hot guys/IMG_8979.jpg" alt="Hot guy" onclick="openModal(this.src)">
+        <img src="/assets/35mm to website/hot guys/IMG_8980.jpg" alt="Hot guy" onclick="openModal(this.src)">
+        <img src="/assets/35mm to website/hot guys/IMG_8981.jpg" alt="Hot guy" onclick="openModal(this.src)">
+        <img src="/assets/35mm to website/hot guys/IMG_8982.jpg" alt="Hot guy" onclick="openModal(this.src)">
+        <img src="/assets/35mm to website/hot guys/IMG_8984.jpg" alt="Hot guy" onclick="openModal(this.src)">
+        <img src="/assets/35mm to website/hot guys/Screen Shot 2026-02-07 at 9.55.51 AM.jpg" alt="Hot guy" onclick="openModal(this.src)">
+      </div>
+
+      <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+      </div>
+
       <div style="text-align: center; padding: 24px;">
         <nav class="stack" style="max-width: 300px; margin: 0 auto;">
           <a class="button button--red" href="/good-to-know/">← back</a>
         </nav>
       </div>
     </main>
+    
+    <script>
+      function openModal(src) {
+        document.getElementById('myModal').style.display = 'block';
+        document.getElementById('modalImg').src = src;
+      }
+      
+      function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+      }
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+    </script>
   </body>
 </html>
