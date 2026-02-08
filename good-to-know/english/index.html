@@ -130,9 +130,12 @@
         display: block;
       }
       .modal-content-carousel img.zoomed {
-        cursor: zoom-out;
-        transform: scale(2);
+        cursor: grab;
+        transform: scale(1.5);
         max-height: none;
+      }
+      .modal-content-carousel img.zoomed:active {
+        cursor: grabbing;
       }
       .modal-arrow {
         position: absolute;
@@ -290,20 +293,80 @@
       
       function closeModal() {
         modal.classList.remove('active');
-        modalSlides.forEach(img => img.classList.remove('zoomed'));
+        modalSlides.forEach(img => {
+          img.classList.remove('zoomed');
+          img.style.transform = '';
+          img.style.transformOrigin = '';
+        });
       }
       
       function closeModal2() {
         modal2.classList.remove('active');
-        modalSlides2.forEach(img => img.classList.remove('zoomed'));
+        modalSlides2.forEach(img => {
+          img.classList.remove('zoomed');
+          img.style.transform = '';
+          img.style.transformOrigin = '';
+        });
       }
       
+      let isDragging = false;
+      let startX, startY, translateX = 0, translateY = 0;
+      
       function toggleZoom(event) {
-        event.target.classList.toggle('zoomed');
+        const img = event.target;
+        const isZoomed = img.classList.contains('zoomed');
+        
+        if (!isZoomed) {
+          // Calculate click position relative to image
+          const rect = img.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          
+          img.style.transformOrigin = `${x}% ${y}%`;
+          img.classList.add('zoomed');
+          translateX = 0;
+          translateY = 0;
+        } else {
+          img.classList.remove('zoomed');
+          img.style.transform = '';
+          img.style.transformOrigin = '';
+          translateX = 0;
+          translateY = 0;
+        }
       }
+      
+      // Add drag functionality for zoomed images
+      document.addEventListener('mousedown', function(e) {
+        const img = e.target;
+        if (img.classList.contains('zoomed') && img.classList.contains('modal-image') || img.classList.contains('modal-image-2')) {
+          isDragging = true;
+          startX = e.clientX - translateX;
+          startY = e.clientY - translateY;
+          e.preventDefault();
+        }
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          const img = document.querySelector('.modal-image.zoomed, .modal-image-2.zoomed');
+          if (img) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            img.style.transform = `scale(1.5) translate(${translateX / 1.5}px, ${translateY / 1.5}px)`;
+          }
+        }
+      });
+      
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+      });
       
       function changeModalSlide(direction) {
         modalSlides[currentSlideIndex].classList.remove('active', 'zoomed');
+        modalSlides[currentSlideIndex].style.transform = '';
+        modalSlides[currentSlideIndex].style.transformOrigin = '';
+        translateX = 0;
+        translateY = 0;
         currentSlideIndex = (currentSlideIndex + direction + modalSlides.length) % modalSlides.length;
         modalSlides[currentSlideIndex].classList.add('active');
         slides[currentSlideIndex].classList.remove('active');
@@ -315,6 +378,10 @@
       
       function changeModalSlide2(direction) {
         modalSlides2[currentSlideIndex2].classList.remove('active', 'zoomed');
+        modalSlides2[currentSlideIndex2].style.transform = '';
+        modalSlides2[currentSlideIndex2].style.transformOrigin = '';
+        translateX = 0;
+        translateY = 0;
         currentSlideIndex2 = (currentSlideIndex2 + direction + modalSlides2.length) % modalSlides2.length;
         modalSlides2[currentSlideIndex2].classList.add('active');
         slides2[currentSlideIndex2].classList.remove('active');
