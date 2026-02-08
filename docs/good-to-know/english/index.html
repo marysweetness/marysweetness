@@ -26,6 +26,16 @@
       .carousel-image.active {
         display: block;
       }
+      .carousel-image-2 {
+        width: 100%;
+        height: auto;
+        display: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .carousel-image-2.active {
+        display: block;
+      }
       .carousel-arrow {
         position: absolute;
         top: 50%;
@@ -159,6 +169,20 @@
             <span id="currentSlide">1</span> / 4
           </div>
         </div>
+        <div class="carousel-container">
+          <button class="carousel-arrow left" onclick="changeSlide2(-1)">‹</button>
+          <img src="/assets/35mm to website/awareness/a1.jpg" alt="Awareness A1" class="carousel-image-2 active" onclick="openModal2()">
+          <img src="/assets/35mm to website/awareness/a2.jpg" alt="Awareness A2" class="carousel-image-2" onclick="openModal2()">
+          <img src="/assets/35mm to website/awareness/a2.2.jpg" alt="Awareness A2.2" class="carousel-image-2" onclick="openModal2()">
+          <img src="/assets/35mm to website/awareness/a2.3.jpg" alt="Awareness A2.3" class="carousel-image-2" onclick="openModal2()">
+          <img src="/assets/35mm to website/awareness/a3.jpg" alt="Awareness A3" class="carousel-image-2" onclick="openModal2()">
+          <img src="/assets/35mm to website/awareness/a4.jpg" alt="Awareness A4" class="carousel-image-2" onclick="openModal2()">
+          <img src="/assets/35mm to website/awareness/a5.jpg" alt="Awareness A5" class="carousel-image-2" onclick="openModal2()">
+          <button class="carousel-arrow right" onclick="changeSlide2(1)">›</button>
+          <div class="carousel-counter">
+            <span id="currentSlide2">1</span> / 7
+          </div>
+        </div>
       </div>
       
       <div id="myModal" class="modal" onclick="closeModal()">
@@ -173,6 +197,21 @@
         </div>
       </div>
 
+      <div id="myModal2" class="modal" onclick="closeModal2()">
+        <span class="close">&times;</span>
+        <div class="modal-content-carousel">
+          <button class="modal-arrow left" onclick="event.stopPropagation(); changeModalSlide2(-1)">‹</button>
+          <img src="/assets/35mm to website/awareness/a1.jpg" alt="Awareness A1" class="modal-image-2">
+          <img src="/assets/35mm to website/awareness/a2.jpg" alt="Awareness A2" class="modal-image-2">
+          <img src="/assets/35mm to website/awareness/a2.2.jpg" alt="Awareness A2.2" class="modal-image-2">
+          <img src="/assets/35mm to website/awareness/a2.3.jpg" alt="Awareness A2.3" class="modal-image-2">
+          <img src="/assets/35mm to website/awareness/a3.jpg" alt="Awareness A3" class="modal-image-2">
+          <img src="/assets/35mm to website/awareness/a4.jpg" alt="Awareness A4" class="modal-image-2">
+          <img src="/assets/35mm to website/awareness/a5.jpg" alt="Awareness A5" class="modal-image-2">
+          <button class="modal-arrow right" onclick="event.stopPropagation(); changeModalSlide2(1)">›</button>
+        </div>
+      </div>
+
       <div style="text-align: center; padding: 24px;">
         <nav class="stack" style="max-width: 300px; margin: 0 auto;">
           <a class="button button--red" href="/good-to-know/">← back</a>
@@ -182,16 +221,28 @@
     
     <script>
       let currentSlideIndex = 0;
+      let currentSlideIndex2 = 0;
       const slides = document.querySelectorAll('.carousel-image');
+      const slides2 = document.querySelectorAll('.carousel-image-2');
       const modalSlides = document.querySelectorAll('.modal-image');
+      const modalSlides2 = document.querySelectorAll('.modal-image-2');
       const counter = document.getElementById('currentSlide');
+      const counter2 = document.getElementById('currentSlide2');
       const modal = document.getElementById('myModal');
+      const modal2 = document.getElementById('myModal2');
       
       function changeSlide(direction) {
         slides[currentSlideIndex].classList.remove('active');
         currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
         slides[currentSlideIndex].classList.add('active');
         counter.textContent = currentSlideIndex + 1;
+      }
+      
+      function changeSlide2(direction) {
+        slides2[currentSlideIndex2].classList.remove('active');
+        currentSlideIndex2 = (currentSlideIndex2 + direction + slides2.length) % slides2.length;
+        slides2[currentSlideIndex2].classList.add('active');
+        counter2.textContent = currentSlideIndex2 + 1;
       }
       
       function openModal() {
@@ -201,8 +252,19 @@
         });
       }
       
+      function openModal2() {
+        modal2.classList.add('active');
+        modalSlides2.forEach((slide, index) => {
+          slide.classList.toggle('active', index === currentSlideIndex2);
+        });
+      }
+      
       function closeModal() {
         modal.classList.remove('active');
+      }
+      
+      function closeModal2() {
+        modal2.classList.remove('active');
       }
       
       function changeModalSlide(direction) {
@@ -216,14 +278,29 @@
         counter.textContent = currentSlideIndex + 1;
       }
       
+      function changeModalSlide2(direction) {
+        modalSlides2[currentSlideIndex2].classList.remove('active');
+        currentSlideIndex2 = (currentSlideIndex2 + direction + modalSlides2.length) % modalSlides2.length;
+        modalSlides2[currentSlideIndex2].classList.add('active');
+        slides2[currentSlideIndex2].classList.remove('active');
+        slides2.forEach((slide, index) => {
+          slide.classList.toggle('active', index === currentSlideIndex2);
+        });
+        counter2.textContent = currentSlideIndex2 + 1;
+      }
+      
       document.addEventListener('keydown', function(e) {
-        if (!modal.classList.contains('active')) {
-          if (e.key === 'ArrowLeft') changeSlide(-1);
-          if (e.key === 'ArrowRight') changeSlide(1);
-        } else {
+        if (!modal.classList.contains('active') && !modal2.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') { changeSlide(-1); changeSlide2(-1); }
+          if (e.key === 'ArrowRight') { changeSlide(1); changeSlide2(1); }
+        } else if (modal.classList.contains('active')) {
           if (e.key === 'ArrowLeft') changeModalSlide(-1);
           if (e.key === 'ArrowRight') changeModalSlide(1);
           if (e.key === 'Escape') closeModal();
+        } else if (modal2.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') changeModalSlide2(-1);
+          if (e.key === 'ArrowRight') changeModalSlide2(1);
+          if (e.key === 'Escape') closeModal2();
         }
       });
     </script>
