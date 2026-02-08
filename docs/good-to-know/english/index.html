@@ -123,9 +123,16 @@
         object-fit: contain;
         border-radius: 12px;
         display: none;
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
       }
       .modal-content-carousel img.active {
         display: block;
+      }
+      .modal-content-carousel img.zoomed {
+        cursor: zoom-out;
+        transform: scale(2);
+        max-height: none;
       }
       .modal-arrow {
         position: absolute;
@@ -209,28 +216,28 @@
       
       <div id="myModal" class="modal" onclick="closeModal()">
         <span class="close">&times;</span>
-        <div class="modal-content-carousel">
-          <button class="modal-arrow left" onclick="event.stopPropagation(); changeModalSlide(-1)">‹</button>
-          <img src="/assets/35mm to website/leben/B1.jpg" alt="Leben B1" class="modal-image">
-          <img src="/assets/35mm to website/leben/b2.jpg" alt="Leben B2" class="modal-image">
-          <img src="/assets/35mm to website/leben/b3.jpg" alt="Leben B3" class="modal-image">
-          <img src="/assets/35mm to website/leben/b4.jpg" alt="Leben B4" class="modal-image">
-          <button class="modal-arrow right" onclick="event.stopPropagation(); changeModalSlide(1)">›</button>
+        <div class="modal-content-carousel" onclick="event.stopPropagation();">
+          <button class="modal-arrow left" onclick="changeModalSlide(-1)">‹</button>
+          <img src="/assets/35mm to website/leben/B1.jpg" alt="Leben B1" class="modal-image" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/leben/b2.jpg" alt="Leben B2" class="modal-image" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/leben/b3.jpg" alt="Leben B3" class="modal-image" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/leben/b4.jpg" alt="Leben B4" class="modal-image" onclick="toggleZoom(event)">
+          <button class="modal-arrow right" onclick="changeModalSlide(1)">›</button>
         </div>
       </div>
 
       <div id="myModal2" class="modal" onclick="closeModal2()">
         <span class="close">&times;</span>
-        <div class="modal-content-carousel">
-          <button class="modal-arrow left" onclick="event.stopPropagation(); changeModalSlide2(-1)">‹</button>
-          <img src="/assets/35mm to website/awareness/a1.jpg" alt="Awareness A1" class="modal-image-2">
-          <img src="/assets/35mm to website/awareness/a2.jpg" alt="Awareness A2" class="modal-image-2">
-          <img src="/assets/35mm to website/awareness/a2.2.jpg" alt="Awareness A2.2" class="modal-image-2">
-          <img src="/assets/35mm to website/awareness/a2.3.jpg" alt="Awareness A2.3" class="modal-image-2">
-          <img src="/assets/35mm to website/awareness/a3.jpg" alt="Awareness A3" class="modal-image-2">
-          <img src="/assets/35mm to website/awareness/a4.jpg" alt="Awareness A4" class="modal-image-2">
-          <img src="/assets/35mm to website/awareness/a5.jpg" alt="Awareness A5" class="modal-image-2">
-          <button class="modal-arrow right" onclick="event.stopPropagation(); changeModalSlide2(1)">›</button>
+        <div class="modal-content-carousel" onclick="event.stopPropagation();">
+          <button class="modal-arrow left" onclick="changeModalSlide2(-1)">‹</button>
+          <img src="/assets/35mm to website/awareness/a1.jpg" alt="Awareness A1" class="modal-image-2" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/awareness/a2.jpg" alt="Awareness A2" class="modal-image-2" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/awareness/a2.2.jpg" alt="Awareness A2.2" class="modal-image-2" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/awareness/a2.3.jpg" alt="Awareness A2.3" class="modal-image-2" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/awareness/a3.jpg" alt="Awareness A3" class="modal-image-2" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/awareness/a4.jpg" alt="Awareness A4" class="modal-image-2" onclick="toggleZoom(event)">
+          <img src="/assets/35mm to website/awareness/a5.jpg" alt="Awareness A5" class="modal-image-2" onclick="toggleZoom(event)">
+          <button class="modal-arrow right" onclick="changeModalSlide2(1)">›</button>
         </div>
       </div>
 
@@ -283,14 +290,20 @@
       
       function closeModal() {
         modal.classList.remove('active');
+        modalSlides.forEach(img => img.classList.remove('zoomed'));
       }
       
       function closeModal2() {
         modal2.classList.remove('active');
+        modalSlides2.forEach(img => img.classList.remove('zoomed'));
+      }
+      
+      function toggleZoom(event) {
+        event.target.classList.toggle('zoomed');
       }
       
       function changeModalSlide(direction) {
-        modalSlides[currentSlideIndex].classList.remove('active');
+        modalSlides[currentSlideIndex].classList.remove('active', 'zoomed');
         currentSlideIndex = (currentSlideIndex + direction + modalSlides.length) % modalSlides.length;
         modalSlides[currentSlideIndex].classList.add('active');
         slides[currentSlideIndex].classList.remove('active');
@@ -301,7 +314,7 @@
       }
       
       function changeModalSlide2(direction) {
-        modalSlides2[currentSlideIndex2].classList.remove('active');
+        modalSlides2[currentSlideIndex2].classList.remove('active', 'zoomed');
         currentSlideIndex2 = (currentSlideIndex2 + direction + modalSlides2.length) % modalSlides2.length;
         modalSlides2[currentSlideIndex2].classList.add('active');
         slides2[currentSlideIndex2].classList.remove('active');
