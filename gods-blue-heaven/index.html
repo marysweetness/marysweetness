@@ -9,13 +9,72 @@
       body {
         background: #09084A !important;
         min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .stars::before,
+      .stars::after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        box-shadow:
+          120px 80px white, 450px 120px white, 780px 200px white, 200px 350px white,
+          950px 420px white, 340px 500px white, 620px 580px white, 880px 650px white,
+          150px 180px white, 520px 240px white, 810px 90px white, 290px 470px white,
+          680px 320px white, 1020px 560px white, 410px 630px white, 760px 410px white,
+          90px 520px white, 560px 160px white, 970px 280px white, 230px 600px white,
+          850px 520px white, 380px 250px white, 710px 670px white, 1050px 180px white,
+          180px 430px white, 590px 540px white, 920px 370px white, 270px 110px white,
+          640px 450px white, 1000px 640px white, 320px 320px white, 750px 210px white,
+          60px 290px white, 480px 610px white, 890px 140px white, 210px 500px white,
+          670px 390px white, 1030px 490px white, 350px 70px white, 790px 600px white,
+          130px 360px white, 540px 480px white, 910px 230px white, 250px 560px white,
+          720px 120px white, 1060px 430px white, 390px 670px white, 820px 310px white,
+          170px 190px white, 600px 280px white, 980px 590px white, 310px 400px white,
+          690px 510px white, 1010px 100px white, 430px 220px white, 860px 450px white,
+          90px 630px white, 510px 340px white, 940px 520px white, 280px 150px white,
+          660px 610px white, 1040px 360px white, 370px 530px white, 800px 240px white,
+          140px 450px white, 570px 570px white, 970px 410px white, 240px 80px white,
+          730px 490px white, 1080px 200px white, 420px 580px white, 880px 330px white;
+      }
+
+      .stars::after {
+        width: 1px;
+        height: 1px;
+        box-shadow:
+          320px 150px white, 580px 310px white, 890px 470px white, 160px 550px white,
+          740px 220px white, 410px 390px white, 920px 580px white, 270px 120px white,
+          630px 440px white, 1010px 290px white, 190px 620px white, 760px 340px white,
+          480px 180px white, 950px 510px white, 300px 380px white, 820px 130px white,
+          540px 500px white, 870px 260px white, 220px 590px white, 680px 420px white,
+          1040px 350px white, 360px 210px white, 790px 570px white, 110px 460px white,
+          590px 90px white, 980px 620px white, 250px 320px white, 710px 480px white,
+          430px 140px white, 900px 400px white, 170px 530px white, 650px 280px white,
+          1020px 170px white, 340px 610px white, 840px 440px white, 200px 250px white,
+          720px 590px white, 460px 370px white, 960px 110px white, 290px 490px white,
+          770px 320px white, 500px 650px white, 1000px 230px white, 330px 540px white,
+          860px 380px white, 180px 410px white, 690px 160px white, 1050px 520px white,
+          400px 600px white, 910px 270px white, 230px 70px white, 750px 430px white,
+          520px 550px white, 990px 340px white, 260px 480px white, 800px 200px white,
+          140px 360px white, 620px 510px white, 1030px 620px white, 370px 290px white,
+          880px 150px white, 210px 570px white, 730px 410px white, 490px 240px white;
       }
     </style>
   </head>
 
   <body>
-    <main class="center">
-      <h1 style="color: white;">God's blue Heaven</h1>
-    </main>
+    <div class="stars"></div>
   </body>
 </html>
