@@ -89,6 +89,76 @@
         font-weight: 700;
         color: #14171a;
       }
+      .tweet-stat.clickable {
+        cursor: pointer;
+      }
+      .tweet-stat.clickable:hover {
+        text-decoration: underline;
+      }
+      .comments-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.8);
+      }
+      .comments-modal.active {
+        display: block;
+      }
+      .comments-content {
+        background: white;
+        margin: 5% auto;
+        padding: 0;
+        max-width: 600px;
+        max-height: 80vh;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+      .comments-header {
+        padding: 20px;
+        border-bottom: 1px solid #e1e8ed;
+        font-weight: 700;
+        font-size: 20px;
+        color: #14171a;
+      }
+      .comments-list {
+        padding: 0;
+        max-height: calc(80vh - 70px);
+        overflow-y: auto;
+      }
+      .comment {
+        padding: 16px 20px;
+        border-bottom: 1px solid #e1e8ed;
+      }
+      .comment-author {
+        font-weight: 700;
+        font-size: 15px;
+        color: #14171a;
+        margin-bottom: 4px;
+      }
+      .comment-text {
+        font-size: 15px;
+        color: #14171a;
+        line-height: 20px;
+      }
+      .close-comments {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #657786;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      .close-comments:hover {
+        color: #14171a;
+      }
     </style>
   </head>
   <body>
@@ -198,7 +268,7 @@
                 <span class="tweet-stat-number">0</span>
                 <span>re wees</span>
               </div>
-              <div class="tweet-stat">
+              <div class="tweet-stat clickable" onclick="openComments()">
                 <span class="tweet-stat-icon">💬</span>
                 <span class="tweet-stat-number">87</span>
                 <span>comments</span>
@@ -206,10 +276,115 @@
             </div>
           </div>
         </div>
+
+        <div id="commentsModal" class="comments-modal" onclick="closeComments()">
+          <div class="comments-content" onclick="event.stopPropagation()">
+            <button class="close-comments" onclick="closeComments()">&times;</button>
+            <div class="comments-header">Comments</div>
+            <div class="comments-list">
+              <div class="comment"><div class="comment-author">@sarah_j</div><div class="comment-text">omg YES! I've always wanted to be in a documentary 👀</div></div>
+              <div class="comment"><div class="comment-author">@mike_films</div><div class="comment-text">what's it about?</div></div>
+              <div class="comment"><div class="comment-author">@jessica_rose</div><div class="comment-text">Me! Pick me!</div></div>
+              <div class="comment"><div class="comment-author">@documentary_lover</div><div class="comment-text">This is so cool! Would love to know more details</div></div>
+              <div class="comment"><div class="comment-author">@alex_smith</div><div class="comment-text">I'm free next week if you need someone</div></div>
+              <div class="comment"><div class="comment-author">@film_enthusiast</div><div class="comment-text">What's the subject matter?</div></div>
+              <div class="comment"><div class="comment-author">@random_person</div><div class="comment-text">lol no</div></div>
+              <div class="comment"><div class="comment-author">@curious_cat</div><div class="comment-text">Can you share more info about the documentary?</div></div>
+              <div class="comment"><div class="comment-author">@david_lee</div><div class="comment-text">I'm interested! DM me</div></div>
+              <div class="comment"><div class="comment-author">@movie_buff</div><div class="comment-text">This sounds exciting!</div></div>
+              <div class="comment"><div class="comment-author">@anna_garcia</div><div class="comment-text">depends on what it's about tbh</div></div>
+              <div class="comment"><div class="comment-author">@creative_soul</div><div class="comment-text">I've done some acting before, would this work?</div></div>
+              <div class="comment"><div class="comment-author">@peter_jones</div><div class="comment-text">Where are you filming?</div></div>
+              <div class="comment"><div class="comment-author">@film_student</div><div class="comment-text">This is perfect timing! I need portfolio work</div></div>
+              <div class="comment"><div class="comment-author">@skeptical_sam</div><div class="comment-text">Is this legit?</div></div>
+              <div class="comment"><div class="comment-author">@eager_beaver</div><div class="comment-text">YES YES YES! When do you need people?</div></div>
+              <div class="comment"><div class="comment-author">@mary_johnson</div><div class="comment-text">I'm camera shy but good luck!</div></div>
+              <div class="comment"><div class="comment-author">@filmmaking_pro</div><div class="comment-text">What's your timeline?</div></div>
+              <div class="comment"><div class="comment-author">@random_dude</div><div class="comment-text">nah I'm good</div></div>
+              <div class="comment"><div class="comment-author">@lisa_marie</div><div class="comment-text">This could be fun! Tell me more</div></div>
+              <div class="comment"><div class="comment-author">@doc_fan</div><div class="comment-text">I love documentaries! Would be honored to participate</div></div>
+              <div class="comment"><div class="comment-author">@kevin_m</div><div class="comment-text">Are you paying people?</div></div>
+              <div class="comment"><div class="comment-author">@interested_party</div><div class="comment-text">What would the time commitment be?</div></div>
+              <div class="comment"><div class="comment-author">@camera_ready</div><div class="comment-text">I'm down! Let's do this</div></div>
+              <div class="comment"><div class="comment-author">@shy_person</div><div class="comment-text">I could never 😅</div></div>
+              <div class="comment"><div class="comment-author">@film_lover</div><div class="comment-text">What's the documentary about? Need more context</div></div>
+              <div class="comment"><div class="comment-author">@volunteer_vic</div><div class="comment-text">Happy to help if I can!</div></div>
+              <div class="comment"><div class="comment-author">@busy_bee</div><div class="comment-text">I would but my schedule is packed rn</div></div>
+              <div class="comment"><div class="comment-author">@amateur_actor</div><div class="comment-text">Do I need any experience?</div></div>
+              <div class="comment"><div class="comment-author">@supportive_friend</div><div class="comment-text">Good luck finding people! This is exciting</div></div>
+              <div class="comment"><div class="comment-author">@maybe_interested</div><div class="comment-text">Possibly? Need to know more details first</div></div>
+              <div class="comment"><div class="comment-author">@local_resident</div><div class="comment-text">Are you looking for locals only?</div></div>
+              <div class="comment"><div class="comment-author">@enthusiastic_ed</div><div class="comment-text">COUNT ME IN!!!</div></div>
+              <div class="comment"><div class="comment-author">@practical_pete</div><div class="comment-text">What dates are you filming?</div></div>
+              <div class="comment"><div class="comment-author">@content_creator</div><div class="comment-text">I make content myself, would love to collab</div></div>
+              <div class="comment"><div class="comment-author">@nervous_nancy</div><div class="comment-text">I'm nervous but interested...</div></div>
+              <div class="comment"><div class="comment-author">@pro_participant</div><div class="comment-text">I've been in 3 documentaries before. Let's talk.</div></div>
+              <div class="comment"><div class="comment-author">@question_mark</div><div class="comment-text">Is this paid or volunteer?</div></div>
+              <div class="comment"><div class="comment-author">@excited_emma</div><div class="comment-text">This would be such a cool experience!</div></div>
+              <div class="comment"><div class="comment-author">@time_constrained</div><div class="comment-text">How many hours would this require?</div></div>
+              <div class="comment"><div class="comment-author">@documentary_vet</div><div class="comment-text">Been there, done that. It's harder than you think lol</div></div>
+              <div class="comment"><div class="comment-author">@interested_ian</div><div class="comment-text">Definitely interested! How do I apply?</div></div>
+              <div class="comment"><div class="comment-author">@privacy_conscious</div><div class="comment-text">Will our faces be blurred?</div></div>
+              <div class="comment"><div class="comment-author">@ready_rachel</div><div class="comment-text">I'm available and ready when you are!</div></div>
+              <div class="comment"><div class="comment-author">@location_question</div><div class="comment-text">Where would we need to be?</div></div>
+              <div class="comment"><div class="comment-author">@friend_group</div><div class="comment-text">Can I bring friends?</div></div>
+              <div class="comment"><div class="comment-author">@professional_p</div><div class="comment-text">Do you have a production company?</div></div>
+              <div class="comment"><div class="comment-author">@casual_observer</div><div class="comment-text">just watching this unfold 👀</div></div>
+              <div class="comment"><div class="comment-author">@detail_oriented</div><div class="comment-text">Would love a casting call sheet with details</div></div>
+              <div class="comment"><div class="comment-author">@family_first</div><div class="comment-text">Would need to check with my family first</div></div>
+              <div class="comment"><div class="comment-author">@spontaneous_sue</div><div class="comment-text">Why not! Sounds fun</div></div>
+              <div class="comment"><div class="comment-author">@experienced_extra</div><div class="comment-text">I've done background work before</div></div>
+              <div class="comment"><div class="comment-author">@age_question</div><div class="comment-text">Any age requirements?</div></div>
+              <div class="comment"><div class="comment-author">@available_andy</div><div class="comment-text">Free all week!</div></div>
+              <div class="comment"><div class="comment-author">@reference_checker</div><div class="comment-text">Can you share your previous work?</div></div>
+              <div class="comment"><div class="comment-author">@maybe_maybe</div><div class="comment-text">Hmm maybe... let me think about it</div></div>
+              <div class="comment"><div class="comment-author">@camera_lover</div><div class="comment-text">I love being on camera!</div></div>
+              <div class="comment"><div class="comment-author">@hard_pass</div><div class="comment-text">Hard pass for me</div></div>
+              <div class="comment"><div class="comment-author">@genuine_interest</div><div class="comment-text">Genuinely interested. Please DM me with details</div></div>
+              <div class="comment"><div class="comment-author">@group_organizer</div><div class="comment-text">I know a few people who might be interested</div></div>
+              <div class="comment"><div class="comment-author">@logistics_larry</div><div class="comment-text">What's the production schedule look like?</div></div>
+              <div class="comment"><div class="comment-author">@concerned_citizen</div><div class="comment-text">Make sure everyone signs releases!</div></div>
+              <div class="comment"><div class="comment-author">@wannabe_star</div><div class="comment-text">This could be my big break!</div></div>
+              <div class="comment"><div class="comment-author">@realistic_rob</div><div class="comment-text">Sounds cool but I'm probably too boring for TV</div></div>
+              <div class="comment"><div class="comment-author">@info_seeker</div><div class="comment-text">Need way more info before I can commit</div></div>
+              <div class="comment"><div class="comment-author">@positive_patty</div><div class="comment-text">This is such a great opportunity for someone!</div></div>
+              <div class="comment"><div class="comment-author">@talent_scout</div><div class="comment-text">You should reach out to local theater groups</div></div>
+              <div class="comment"><div class="comment-author">@booking_question</div><div class="comment-text">How far in advance do you need to book people?</div></div>
+              <div class="comment"><div class="comment-author">@experienced_e</div><div class="comment-text">I did this once and it was actually really fun</div></div>
+              <div class="comment"><div class="comment-author">@travel_question</div><div class="comment-text">Do you cover travel expenses?</div></div>
+              <div class="comment"><div class="comment-author">@final_question</div><div class="comment-text">What platform will this be on?</div></div>
+              <div class="comment"><div class="comment-author">@production_assistant</div><div class="comment-text">I work in film production, happy to help</div></div>
+              <div class="comment"><div class="comment-author">@last_commenter</div><div class="comment-text">Send me the details!</div></div>
+              <div class="comment"><div class="comment-author">@excited_participant</div><div class="comment-text">I'm so ready for this!</div></div>
+              <div class="comment"><div class="comment-author">@networking_neil</div><div class="comment-text">Great networking opportunity</div></div>
+              <div class="comment"><div class="comment-author">@portfolio_builder</div><div class="comment-text">Would love to add this to my portfolio</div></div>
+              <div class="comment"><div class="comment-author">@contact_me</div><div class="comment-text">Please contact me ASAP!</div></div>
+              <div class="comment"><div class="comment-author">@social_butterfly</div><div class="comment-text">This sounds like a fun social experience</div></div>
+              <div class="comment"><div class="comment-author">@budget_question</div><div class="comment-text">What's your budget for participants?</div></div>
+              <div class="comment"><div class="comment-author">@supportive_sally</div><div class="comment-text">Hope you find the perfect people!</div></div>
+              <div class="comment"><div class="comment-author">@last_one</div><div class="comment-text">Good luck with your project! 🎬</div></div>
+            </div>
+          </div>
+        </div>
+
         <nav class="stack" style="margin-top:auto; margin-bottom:18px;">
           <a class="button button--red" href="/">← back home</a>
         </nav>
       </div>
     </main>
+    
+    <script>
+      function openComments() {
+        document.getElementById('commentsModal').classList.add('active');
+      }
+      
+      function closeComments() {
+        document.getElementById('commentsModal').classList.remove('active');
+      }
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeComments();
+      });
+    </script>
   </body>
 </html>
