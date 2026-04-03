@@ -60,6 +60,114 @@
         color: white;
         font-size: 14px;
       }
+      .caption {
+        margin-top: 12px;
+        color: white;
+        font-size: 12px;
+        line-height: 1.4;
+        font-style: italic;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0);
+        transition: background-color 0.3s ease;
+      }
+      .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0,0,0,0.95);
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          background-color: rgba(0,0,0,0);
+        }
+        to {
+          background-color: rgba(0,0,0,0.95);
+        }
+      }
+      .modal-content-carousel {
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        padding: 0 80px;
+        animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transform-origin: center;
+      }
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .modal-content-carousel img {
+        width: 100%;
+        height: auto;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 12px;
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+      }
+      .modal-content-carousel img.zoomed {
+        cursor: grab;
+        transform: scale(1.5);
+        max-height: none;
+      }
+      .modal-content-carousel img.zoomed:active {
+        cursor: grabbing;
+      }
+      .modal-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        color: #000;
+        border: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+        z-index: 1001;
+      }
+      .modal-arrow:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+      .modal-arrow.left {
+        left: 10px;
+      }
+      .modal-arrow.right {
+        right: 10px;
+      }
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1001;
+      }
     </style>
   </head>
   <body>
@@ -72,15 +180,26 @@
         </div>
 
         <div class="gallery-container">
-          <h2 style="color: white; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">Riis Beach</h2>
           <div class="image-stack">
             <button class="gallery-arrow left" onclick="prevImage()">‹</button>
-            <img id="gallery-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo" onclick="nextImage()">
+            <img id="gallery-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo" onclick="openModal()">
             <button class="gallery-arrow right" onclick="nextImage()">›</button>
           </div>
           <div class="image-counter">
             <span id="current-image">1</span> / <span id="total-images">9</span>
           </div>
+          <div class="caption">
+            Image Credit: Richard Peckinpaugh Beach Photographs courtesy of the LGBT Community Center National History Archive
+          </div>
+        </div>
+      </div>
+
+      <div id="myModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <div class="modal-content-carousel" onclick="event.stopPropagation();">
+          <button class="modal-arrow left" onclick="changeModalSlide(-1)">‹</button>
+          <img id="modal-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo" onclick="toggleZoom(event)">
+          <button class="modal-arrow right" onclick="changeModalSlide(1)">›</button>
         </div>
       </div>
       
@@ -105,9 +224,11 @@
       ];
       
       let currentIndex = 0;
+      const modal = document.getElementById('myModal');
       
       function updateImage() {
         document.getElementById('gallery-image').src = images[currentIndex];
+        document.getElementById('modal-image').src = images[currentIndex];
         document.getElementById('current-image').textContent = currentIndex + 1;
       }
       
@@ -121,10 +242,91 @@
         updateImage();
       }
       
+      function openModal() {
+        modal.classList.add('active');
+      }
+      
+      function closeModal() {
+        modal.classList.remove('active');
+        const img = document.getElementById('modal-image');
+        img.classList.remove('zoomed');
+        img.style.transform = '';
+        img.style.transformOrigin = '';
+      }
+      
+      function changeModalSlide(direction) {
+        const img = document.getElementById('modal-image');
+        img.classList.remove('zoomed');
+        img.style.transform = '';
+        img.style.transformOrigin = '';
+        
+        if (direction > 0) {
+          nextImage();
+        } else {
+          prevImage();
+        }
+      }
+      
+      let isDragging = false;
+      let startX, startY, translateX = 0, translateY = 0;
+      
+      function toggleZoom(event) {
+        const img = event.target;
+        const isZoomed = img.classList.contains('zoomed');
+        
+        if (!isZoomed) {
+          const rect = img.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          
+          img.style.transformOrigin = `${x}% ${y}%`;
+          img.classList.add('zoomed');
+          translateX = 0;
+          translateY = 0;
+        } else {
+          img.classList.remove('zoomed');
+          img.style.transform = '';
+          img.style.transformOrigin = '';
+          translateX = 0;
+          translateY = 0;
+        }
+      }
+      
+      document.addEventListener('mousedown', function(e) {
+        const img = e.target;
+        if (img.classList.contains('zoomed') && img.id === 'modal-image') {
+          isDragging = true;
+          startX = e.clientX - translateX;
+          startY = e.clientY - translateY;
+          e.preventDefault();
+        }
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+          const img = document.getElementById('modal-image');
+          if (img && img.classList.contains('zoomed')) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            img.style.transform = `scale(1.5) translate(${translateX / 1.5}px, ${translateY / 1.5}px)`;
+          }
+        }
+      });
+      
+      document.addEventListener('mouseup', function() {
+        isDragging = false;
+      });
+      
       // Keyboard navigation
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowRight') nextImage();
-        if (e.key === 'ArrowLeft') prevImage();
+        if (modal.classList.contains('active')) {
+          if (e.key === 'ArrowRight') changeModalSlide(1);
+          if (e.key === 'ArrowLeft') changeModalSlide(-1);
+          if (e.key === 'Escape') closeModal();
+        } else {
+          if (e.key === 'ArrowRight') nextImage();
+          if (e.key === 'ArrowLeft') prevImage();
+        }
       });
     </script>
   </body>
