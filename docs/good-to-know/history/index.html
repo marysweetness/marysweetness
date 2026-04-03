@@ -5,6 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>history</title>
     <link rel="stylesheet" href="/assets/styles.css" />
+    <style>
+      .gallery-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .image-stack {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .image-stack img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      }
+      .gallery-controls {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 20px;
+        align-items: center;
+      }
+      .gallery-btn {
+        background: rgba(255,255,255,0.2);
+        border: 1px solid white;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.2s;
+      }
+      .gallery-btn:hover {
+        background: rgba(255,255,255,0.3);
+      }
+      .gallery-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+      .image-counter {
+        color: white;
+        font-size: 14px;
+      }
+    </style>
   </head>
   <body>
     <main class="container">
@@ -15,6 +64,18 @@
           </h2>
         </div>
       </div>
+
+      <div class="gallery-container">
+        <h2 style="color: white; text-align: center; margin-bottom: 24px;">Riis Beach</h2>
+        <div class="image-stack" onclick="nextImage()">
+          <img id="gallery-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo">
+        </div>
+        <div class="gallery-controls">
+          <button class="gallery-btn" onclick="prevImage(); event.stopPropagation();">← Previous</button>
+          <span class="image-counter"><span id="current-image">1</span> / <span id="total-images">9</span></span>
+          <button class="gallery-btn" onclick="nextImage(); event.stopPropagation();">Next →</button>
+        </div>
+      </div>
       
       <div style="text-align: center; padding: 24px;">
         <nav class="stack" style="max-width: 300px; margin: 0 auto;">
@@ -22,5 +83,42 @@
         </nav>
       </div>
     </main>
+
+    <script>
+      const images = [
+        '/assets/riis beach/1IMG_0175.PNG',
+        '/assets/riis beach/2IMG_0187.PNG',
+        '/assets/riis beach/3IMG_0189.PNG',
+        '/assets/riis beach/4IMG_0176.PNG',
+        '/assets/riis beach/5IMG_0177.PNG',
+        '/assets/riis beach/6IMG_0183.PNG',
+        '/assets/riis beach/7IMG_0184.PNG',
+        '/assets/riis beach/8IMG_0185.PNG',
+        '/assets/riis beach/99999IMG_0188.PNG'
+      ];
+      
+      let currentIndex = 0;
+      
+      function updateImage() {
+        document.getElementById('gallery-image').src = images[currentIndex];
+        document.getElementById('current-image').textContent = currentIndex + 1;
+      }
+      
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+      }
+      
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+      }
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+      });
+    </script>
   </body>
 </html>
