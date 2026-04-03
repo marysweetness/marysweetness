@@ -192,6 +192,17 @@
             Image Credit: Richard Peckinpaugh Beach Photographs courtesy of the LGBT Community Center National History Archive
           </div>
         </div>
+
+        <div class="gallery-container">
+          <div class="image-stack">
+            <button class="gallery-arrow left" onclick="prevImage2()">‹</button>
+            <img id="gallery-image-2" src="/assets/fullmoon/Agipito-Aggie-Womanshare-with-rabbit.jpg" alt="Full Moon photo" onclick="openModal2()">
+            <button class="gallery-arrow right" onclick="nextImage2()">›</button>
+          </div>
+          <div class="image-counter">
+            <span id="current-image-2">1</span> / <span id="total-images-2">6</span>
+          </div>
+        </div>
       </div>
 
       <div id="myModal" class="modal" onclick="closeModal()">
@@ -200,6 +211,15 @@
           <button class="modal-arrow left" onclick="changeModalSlide(-1)">‹</button>
           <img id="modal-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo" onclick="toggleZoom(event)">
           <button class="modal-arrow right" onclick="changeModalSlide(1)">›</button>
+        </div>
+      </div>
+
+      <div id="myModal2" class="modal" onclick="closeModal2()">
+        <span class="close">&times;</span>
+        <div class="modal-content-carousel" onclick="event.stopPropagation();">
+          <button class="modal-arrow left" onclick="changeModalSlide2(-1)">‹</button>
+          <img id="modal-image-2" src="/assets/fullmoon/Agipito-Aggie-Womanshare-with-rabbit.jpg" alt="Full Moon photo" onclick="toggleZoom2(event)">
+          <button class="modal-arrow right" onclick="changeModalSlide2(1)">›</button>
         </div>
       </div>
       
@@ -222,14 +242,31 @@
         '/assets/riis beach/8IMG_0185.PNG',
         '/assets/riis beach/99999IMG_0188.PNG'
       ];
+
+      const images2 = [
+        '/assets/fullmoon/Agipito-Aggie-Womanshare-with-rabbit.jpg',
+        '/assets/fullmoon/Full-Moon-Rising-Crew-2.jpg',
+        '/assets/fullmoon/Full-Moon-Rising-Crew-6.jpg',
+        '/assets/fullmoon/Full-Moon-Rising-Roberts-Simone-truck-dog-Lolo-Mountain-1978.jpg',
+        '/assets/fullmoon/OWL-Farm.jpg',
+        '/assets/fullmoon/Starflower-Conway-Flaxen-last-Portland-run-drivers-Flaxen-Gail-Kate.jpg'
+      ];
       
       let currentIndex = 0;
+      let currentIndex2 = 0;
       const modal = document.getElementById('myModal');
+      const modal2 = document.getElementById('myModal2');
       
       function updateImage() {
         document.getElementById('gallery-image').src = images[currentIndex];
         document.getElementById('modal-image').src = images[currentIndex];
         document.getElementById('current-image').textContent = currentIndex + 1;
+      }
+
+      function updateImage2() {
+        document.getElementById('gallery-image-2').src = images2[currentIndex2];
+        document.getElementById('modal-image-2').src = images2[currentIndex2];
+        document.getElementById('current-image-2').textContent = currentIndex2 + 1;
       }
       
       function nextImage() {
@@ -241,14 +278,36 @@
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateImage();
       }
+
+      function nextImage2() {
+        currentIndex2 = (currentIndex2 + 1) % images2.length;
+        updateImage2();
+      }
+      
+      function prevImage2() {
+        currentIndex2 = (currentIndex2 - 1 + images2.length) % images2.length;
+        updateImage2();
+      }
       
       function openModal() {
         modal.classList.add('active');
+      }
+
+      function openModal2() {
+        modal2.classList.add('active');
       }
       
       function closeModal() {
         modal.classList.remove('active');
         const img = document.getElementById('modal-image');
+        img.classList.remove('zoomed');
+        img.style.transform = '';
+        img.style.transformOrigin = '';
+      }
+
+      function closeModal2() {
+        modal2.classList.remove('active');
+        const img = document.getElementById('modal-image-2');
         img.classList.remove('zoomed');
         img.style.transform = '';
         img.style.transformOrigin = '';
@@ -264,6 +323,19 @@
           nextImage();
         } else {
           prevImage();
+        }
+      }
+
+      function changeModalSlide2(direction) {
+        const img = document.getElementById('modal-image-2');
+        img.classList.remove('zoomed');
+        img.style.transform = '';
+        img.style.transformOrigin = '';
+        
+        if (direction > 0) {
+          nextImage2();
+        } else {
+          prevImage2();
         }
       }
       
@@ -291,10 +363,32 @@
           translateY = 0;
         }
       }
+
+      function toggleZoom2(event) {
+        const img = event.target;
+        const isZoomed = img.classList.contains('zoomed');
+        
+        if (!isZoomed) {
+          const rect = img.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          
+          img.style.transformOrigin = `${x}% ${y}%`;
+          img.classList.add('zoomed');
+          translateX = 0;
+          translateY = 0;
+        } else {
+          img.classList.remove('zoomed');
+          img.style.transform = '';
+          img.style.transformOrigin = '';
+          translateX = 0;
+          translateY = 0;
+        }
+      }
       
       document.addEventListener('mousedown', function(e) {
         const img = e.target;
-        if (img.classList.contains('zoomed') && img.id === 'modal-image') {
+        if (img.classList.contains('zoomed') && (img.id === 'modal-image' || img.id === 'modal-image-2')) {
           isDragging = true;
           startX = e.clientX - translateX;
           startY = e.clientY - translateY;
@@ -304,8 +398,8 @@
       
       document.addEventListener('mousemove', function(e) {
         if (isDragging) {
-          const img = document.getElementById('modal-image');
-          if (img && img.classList.contains('zoomed')) {
+          const img = document.querySelector('#modal-image.zoomed, #modal-image-2.zoomed');
+          if (img) {
             translateX = e.clientX - startX;
             translateY = e.clientY - startY;
             img.style.transform = `scale(1.5) translate(${translateX / 1.5}px, ${translateY / 1.5}px)`;
@@ -323,9 +417,13 @@
           if (e.key === 'ArrowRight') changeModalSlide(1);
           if (e.key === 'ArrowLeft') changeModalSlide(-1);
           if (e.key === 'Escape') closeModal();
+        } else if (modal2.classList.contains('active')) {
+          if (e.key === 'ArrowRight') changeModalSlide2(1);
+          if (e.key === 'ArrowLeft') changeModalSlide2(-1);
+          if (e.key === 'Escape') closeModal2();
         } else {
-          if (e.key === 'ArrowRight') nextImage();
-          if (e.key === 'ArrowLeft') prevImage();
+          if (e.key === 'ArrowRight') { nextImage(); nextImage2(); }
+          if (e.key === 'ArrowLeft') { prevImage(); prevImage2(); }
         }
       });
     </script>
