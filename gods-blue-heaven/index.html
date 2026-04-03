@@ -34,13 +34,13 @@
       .shooting-star::before {
         content: '';
         position: absolute;
-        top: -6px;
-        left: 0;
+        top: 50%;
+        left: 50%;
         height: 16px;
         width: 280px;
-        background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 15%, rgba(255, 255, 255, 0.5) 35%, rgba(255, 255, 255, 0.2) 60%, transparent 100%);
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0.5) 65%, rgba(255, 255, 255, 0.8) 85%, #ffffff 100%);
         opacity: 0.9;
-        border-radius: 0 50% 50% 0;
+        border-radius: 50% 0 0 50%;
         filter: blur(0.8px);
       }
 
@@ -48,32 +48,32 @@
         animation: shootDownRight 3s ease-out infinite;
       }
       .shoot-down-right::before {
-        transform: rotate(45deg);
-        transform-origin: 0% 50%;
+        transform: translate(-100%, -50%) rotate(-135deg);
+        transform-origin: right center;
       }
 
       .shoot-down-left {
         animation: shootDownLeft 3s ease-out infinite;
       }
       .shoot-down-left::before {
-        transform: rotate(135deg);
-        transform-origin: 0% 50%;
+        transform: translate(-100%, -50%) rotate(135deg);
+        transform-origin: right center;
       }
 
       .shoot-up-right {
         animation: shootUpRight 3s ease-out infinite;
       }
       .shoot-up-right::before {
-        transform: rotate(-45deg);
-        transform-origin: 0% 50%;
+        transform: translate(-100%, -50%) rotate(-45deg);
+        transform-origin: right center;
       }
 
       .shoot-up-left {
         animation: shootUpLeft 3s ease-out infinite;
       }
       .shoot-up-left::before {
-        transform: rotate(-135deg);
-        transform-origin: 0% 50%;
+        transform: translate(-100%, -50%) rotate(45deg);
+        transform-origin: right center;
       }
 
       @keyframes shootDownRight {
