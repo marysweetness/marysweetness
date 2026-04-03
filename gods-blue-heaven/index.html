@@ -33,13 +33,13 @@
       .shooting-star::before {
         content: '';
         position: absolute;
-        top: 0;
-        right: 2px;
-        height: 2px;
-        width: 80px;
-        background: linear-gradient(90deg, #ffd700, transparent);
-        border-radius: 50% 0 0 50%;
-        opacity: 0.8;
+        top: -20px;
+        right: 0;
+        height: 40px;
+        width: 100px;
+        background: radial-gradient(ellipse at left center, #ffd700 0%, transparent 70%);
+        opacity: 0.6;
+        border-radius: 100% 0 0 100%;
       }
 
       .shoot-down-right {
@@ -47,7 +47,7 @@
       }
       .shoot-down-right::before {
         transform: rotate(45deg);
-        transform-origin: left center;
+        transform-origin: 0% 50%;
       }
 
       .shoot-down-left {
@@ -55,7 +55,7 @@
       }
       .shoot-down-left::before {
         transform: rotate(135deg);
-        transform-origin: left center;
+        transform-origin: 0% 50%;
       }
 
       .shoot-up-right {
@@ -63,7 +63,7 @@
       }
       .shoot-up-right::before {
         transform: rotate(-45deg);
-        transform-origin: left center;
+        transform-origin: 0% 50%;
       }
 
       .shoot-up-left {
@@ -71,7 +71,7 @@
       }
       .shoot-up-left::before {
         transform: rotate(-135deg);
-        transform-origin: left center;
+        transform-origin: 0% 50%;
       }
 
       @keyframes shootDownRight {
