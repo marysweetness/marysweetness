@@ -6,16 +6,9 @@
     <title>history</title>
     <link rel="stylesheet" href="/assets/styles.css" />
     <style>
-      .gallery-container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 24px;
-      }
       .image-stack {
         position: relative;
         width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
         cursor: pointer;
       }
       .image-stack img {
@@ -28,18 +21,18 @@
       .gallery-controls {
         display: flex;
         justify-content: center;
-        gap: 16px;
-        margin-top: 20px;
+        gap: 12px;
+        margin-top: 12px;
         align-items: center;
       }
       .gallery-btn {
         background: rgba(255,255,255,0.2);
         border: 1px solid white;
         color: white;
-        padding: 10px 20px;
+        padding: 6px 12px;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px;
         transition: background 0.2s;
       }
       .gallery-btn:hover {
@@ -51,29 +44,29 @@
       }
       .image-counter {
         color: white;
-        font-size: 14px;
+        font-size: 13px;
       }
     </style>
   </head>
   <body>
     <main class="container">
-      <div style="padding: 48px 24px; display: flex; gap: 24px; flex-wrap: wrap;">
+      <div style="padding: 48px 24px; display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
         <div style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 8px; border: 1px solid white; width: fit-content;">
           <h2 style="font-size: 20px; font-weight: 600; margin: 0;">
             <a href="https://archive.ph/r8qFB" style="color: white; text-decoration: underline;" target="_blank">Letters to Woofy</a>
           </h2>
         </div>
-      </div>
 
-      <div class="gallery-container">
-        <h2 style="color: white; text-align: center; margin-bottom: 24px;">Riis Beach</h2>
-        <div class="image-stack" onclick="nextImage()">
-          <img id="gallery-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo">
-        </div>
-        <div class="gallery-controls">
-          <button class="gallery-btn" onclick="prevImage(); event.stopPropagation();">← Previous</button>
-          <span class="image-counter"><span id="current-image">1</span> / <span id="total-images">9</span></span>
-          <button class="gallery-btn" onclick="nextImage(); event.stopPropagation();">Next →</button>
+        <div style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 8px; border: 1px solid white; max-width: 400px;">
+          <h2 style="color: white; margin: 0 0 16px 0; font-size: 20px; font-weight: 600;">Riis Beach</h2>
+          <div class="image-stack" onclick="nextImage()">
+            <img id="gallery-image" src="/assets/riis beach/1IMG_0175.PNG" alt="Riis Beach photo">
+          </div>
+          <div class="gallery-controls">
+            <button class="gallery-btn" onclick="prevImage(); event.stopPropagation();">←</button>
+            <span class="image-counter"><span id="current-image">1</span> / <span id="total-images">9</span></span>
+            <button class="gallery-btn" onclick="nextImage(); event.stopPropagation();">→</button>
+          </div>
         </div>
       </div>
       
